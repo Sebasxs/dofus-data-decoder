@@ -1,0 +1,4 @@
+node_modules
+src/input/*
+src/output/*/*
+src/data/serviceAccountKey.json

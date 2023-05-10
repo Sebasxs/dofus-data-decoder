@@ -103,7 +103,7 @@ export default async function () {
          markdown += `\n\n## ${skill}\n${description}`;
       };
       markdown += `\n\n## Menú de hechizos\nPuedes ver en detalle todos los hechizos de los ${breedName} y sus variantes usando el siguiente menú:\n<component type={${breedName.toUpperCase()}_SPELLS_MENU}>`;
-      await writeFile(join(dirname(__filename), `../output/breeds/${id}.md`), markdown, { encoding: 'utf-8' });
+      await writeFile(join(dirname(__filename), `../pages/breeds/${id}.md`), markdown, { encoding: 'utf-8' });
    };
 
    await writeFile(join(dirname(__filename), '../output/breeds/breeds.json'), JSON.stringify(json), { encoding: 'utf-8' });

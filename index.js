@@ -10,6 +10,6 @@ import documents from './src/modules/Documents.js';
    // const breedObject = await breeds();
    // DB('dofus_breeds').update(breedObject);
 
-   const documentsObject = documents();
+   // const documentsObject = documents();
    // DB('dofus_documents').update(documentsObject);
 })();

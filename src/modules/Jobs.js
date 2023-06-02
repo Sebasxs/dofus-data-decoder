@@ -1,3 +1,4 @@
+import DB from './DB.js';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
 import { writeFile } from 'fs/promises';
@@ -72,5 +73,5 @@ export default async function () {
    };
 
    await writeFile(join(dirname(__filename), '../output/jobs/jobs.json'), JSON.stringify(json), { encoding: 'utf-8' });
-   return json;
+   DB('dofus_jobs').update(json);
 };

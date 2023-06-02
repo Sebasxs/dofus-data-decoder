@@ -1,7 +1,7 @@
 import i18n from '../input/i18n_es.json' assert {type: 'json'};
 import SpellStates from '../input/SpellStates.json' assert { type: 'json'};
 
-function getCombinations(arrays) {
+function GetCombinations(arrays) {
    let combinations = [[]];
    for (let i = 0; i < arrays.length; i++) {
       const currentArray = arrays[i];
@@ -16,6 +16,31 @@ function getCombinations(arrays) {
       combinations = tempCombinations;
    };
    return combinations;
+};
+
+function FormatCombinations(combinations) {
+   const GetStateNames = (stateArray) => {
+      return stateArray.map(state => {
+         const stateId = parseInt(state.replace(/\D+/, ''));
+         const stateNameId = SpellStates.find(state => state.id === stateId).nameId;
+         return i18n.texts[stateNameId].replace(/{.+?>|<.+?}/g, '');
+      });
+   };
+
+   return combinations.map(combination => {
+      const states = combination.join('&').split('&');
+
+      const requiredStates = states.filter(state => state.includes('='));
+      const requiredStateNames = GetStateNames(requiredStates);
+
+      const forbiddenStates = states.filter(state => state.includes('!'));
+      const forbiddenStateNames = GetStateNames(forbiddenStates);
+
+      return {
+         requiredStates: requiredStateNames,
+         forbiddenStates: forbiddenStateNames,
+      }
+   });
 };
 
 /**@param {String} expression */
@@ -36,23 +61,6 @@ export default function (expression) {
       });
    };
 
-   return getCombinations(groupsToCombine).map(combination => {
-      const states = combination.join('&').split('&');
-      const requiredStates = states.filter(state => state.includes('='));
-      const requiredStateNames = requiredStates.map(state => {
-         const stateId = parseInt(state.replace(/\D+/, ''));
-         const stateNameId = SpellStates.find(state => state.id === stateId).nameId;
-         return i18n.texts[stateNameId].replace(/{.+?>|<.+?}/g, '');
-      });
-      const forbiddenStates = states.filter(state => state.includes('!'));
-      const forbiddenStateNames = forbiddenStates.map(state => {
-         const stateId = parseInt(state.replace(/\D+/, ''));
-         const stateNameId = SpellStates.find(state => state.id === stateId).nameId;
-         return i18n.texts[stateNameId].replace(/{.+?>|<.+?}/g, '');
-      });
-      return {
-         requiredStates: requiredStateNames,
-         forbiddenStates: forbiddenStateNames,
-      }
-   });
+   const combinations = GetCombinations(groupsToCombine);
+   return FormatCombinations(combinations);
 };

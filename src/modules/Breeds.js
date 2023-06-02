@@ -1,3 +1,4 @@
+import DB from './DB.js';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
 import { writeFile } from 'fs/promises';
@@ -11,7 +12,7 @@ import DestructSpellStates from './DestructSpellStates.js';
 import GetSpellEffects from './SpellEffects.js';
 
 /**@param {Number} spellId */
-function getSpellData(spellId) {
+function GetSpellData(spellId) {
    const spell = Spells.find(spell => spell.id === spellId);
    const spellLevelId = spell.spellLevels.at(-1);
    const spellLevel = SpellLevels.find(spell => spell.id === spellLevelId);
@@ -66,9 +67,9 @@ export default async function () {
       const spells = [];
       const spellVariants = [];
       for (const [spellId, variantId] of spellTupleIds) {
-         const spellData = getSpellData(spellId);
+         const spellData = GetSpellData(spellId);
          spells.push(spellData);
-         const variantData = getSpellData(variantId);
+         const variantData = GetSpellData(variantId);
          spellVariants.push(variantData);
       };
 
@@ -107,5 +108,5 @@ export default async function () {
    };
 
    await writeFile(join(dirname(__filename), '../output/breeds/breeds.json'), JSON.stringify(json), { encoding: 'utf-8' });
-   return json;
+   DB('dofus_breeds').update(json);
 };

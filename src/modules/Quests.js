@@ -19,8 +19,8 @@ const NpcPositions = {};
 function AddNpcPosition(npcId, mapId, questId) {
    const quest = Quests.find(q => q.id === questId);
    const questName = i18n.texts[quest.nameId];
-   PATHS[`dofus_npcs/${npcId}/map_ids/${mapId}/${questId}`] = questName;
-   NpcPositions[`${npcId}/map_ids/${mapId}/${questId}`] = questName;
+   PATHS[`dofus_npcs/${npcId}/quest_positions/${mapId}/${questId}`] = questName;
+   NpcPositions[`${npcId}/quest_positions/${mapId}/${questId}`] = questName;
 };
 
 function AddItemDropQuest(itemId, questId, quantity) {
@@ -181,6 +181,7 @@ export default async function () {
    const browser = await chromium.launch();
    const page = await browser.newPage();
    const listFormatter = new Intl.ListFormat('es', { style: 'short', type: 'conjunction' });
+
    for (const { id, nameId, questIds } of QuestCategory) {
       if (questCategoriesToIgnore.includes(id)) continue;
       const categoryName = i18n.texts[nameId];

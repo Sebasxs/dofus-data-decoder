@@ -13,8 +13,7 @@ Ubicación de talleres de alquimistas en Dofus:
 
 ## Talleres de cazadores
 Ubicación de talleres de cazadores en Dofus:
-- En Isla de Frigost en la posición [-79,-46].
-- En Isla de Frigost en la posición [-74,-49].
+- En Isla de Frigost en las posiciones [-79,-46] y [-74,-49].
 - En Astrub en la posición [5,-20].
 - En Bahía de Sufokia en la posición [11,24].
 - En Bonta en la posición [-30,-52].
@@ -25,12 +24,10 @@ Ubicación de talleres de cazadores en Dofus:
 ## Talleres de joyeros
 Ubicación de talleres de joyeros en Dofus:
 - En Astrub en la posición [6,-15].
-- En Amakna en la posición [2,29].
+- En Amakna en las posiciones [2,29], [0,2] y [0,32].
 - En Brakmar en la posición [-29,34].
-- En Amakna en la posición [0,2].
 - En Bonta en la posición [-33,-55].
 - En Isla de Frigost en la posición [-79,-43].
-- En Amakna en la posición [0,32].
 - En Incarnam en la posición [1,-4].
 - En Bahía de Sufokia en la posición [19,23].
 
@@ -39,63 +36,44 @@ Ubicación de talleres de escultores en Dofus:
 - En Astrub en la posición [2,-16].
 - En Bonta en la posición [-29,-56].
 - En Brakmar en la posición [-28,32].
-- En Amakna en la posición [14,20].
-- En Amakna en la posición [3,12].
-- En Amakna en la posición [2,30].
-- En Amakna en la posición [5,29].
+- En Amakna en las posiciones [14,20], [3,12], [2,30] y [5,29].
 - En Bahía de Sufokia en la posición [9,26].
 - En Incarnam en la posición [2,-2].
 - En Isla de Frigost en la posición [-72,-40].
 
 ## Talleres de campesinos
 Ubicación de talleres de campesinos en Dofus:
-- En Amakna en la posición [-1,23].
-- En Amakna en la posición [2,25].
-- En Amakna en la posición [1,23].
-- En Amakna en la posición [3,23].
-- En Amakna en la posición [4,13].
+- En Amakna en las posiciones [-1,23], [2,25], [1,23], [3,23], [4,13], [3,0], [5,6] y [9,4].
 - En Bonta en la posición [-31,-52].
 - En Brakmar en la posición [-23,35].
 - En Astrub en la posición [5,-21].
-- En Amakna en la posición [3,0].
 - En Llanuras de Cania en la posición [-26,-41].
 - En Astrub en la posición [7,-24].
-- En Amakna en la posición [5,6].
-- En Isla de Frigost en la posición [-83,-44].
-- En Isla de Frigost en la posición [-69,-39].
+- En Isla de Frigost en las posiciones [-83,-44] y [-69,-39].
 - En Incarnam en la posición [-1,-4].
 - En Isla de Pandala en la posición [20,-26].
-- En Isla de Otomai en la posición [-57,11].
-- En Isla de Otomai en la posición [-50,20].
+- En Isla de Otomai en las posiciones [-57,11] y [-50,20].
 - En Bahía de Sufokia en la posición [14,28].
-- En Amakna en la posición [9,4].
 
 ## Talleres de mineros
 Ubicación de talleres de mineros en Dofus:
+- En Amakna en las posiciones [3,29], [-1,5], [-2,-3], [0,33] y [7,-16].
 - En Bonta en la posición [-28,-55].
-- En Amakna en la posición [3,29].
-- En Amakna en la posición [-1,5].
-- En Amakna en la posición [-2,-3].
-- En Astrub en la posición [7,-16].
 - En Brakmar en la posición [-28,33].
 - En Isla de Frigost en la posición [-74,-33].
 - En Incarnam en la posición [2,-4].
 - En Isla de Pandala en la posición [24,-22].
 - En Bahía de Sufokia en la posición [16,26].
-- En Archipiélago de Valonia en la posición [33,-83].
-- En Archipiélago de Valonia en la posición [33,-63].
-- En Amakna en la posición [0,33].
+- En Archipiélago de Valonia en las posiciones [33,-83] y [33,-63].
 
 ## Talleres de pescadores
 Ubicación de talleres de pescadores en Dofus:
 - En Astrub en la posición [4,-20].
 - En Brakmar en la posición [-22,39].
-- En Amakna en la posición [9,0].
+- En Amakna en las posiciones [9,0] y [12,-1].
 - En Bahía de Sufokia en la posición [15,26].
 - En Bonta en la posición [-34,-54].
-- En Isla de Frigost en la posición [-82,-42].
-- En Isla de Frigost en la posición [-77,-36].
-- En Amakna en la posición [12,-1].
+- En Isla de Frigost en las posiciones [-82,-42] y [-77,-36].
 - En Incarnam en la posición [0,-1].
 - En Isla de Pandala en la posición [21,-19].
 
@@ -110,15 +88,10 @@ Ubicación de talleres de manitas en Dofus:
 
 ## Talleres de leñadores
 Ubicación de talleres de leñadores en Dofus:
-- En Amakna en la posición [4,30].
-- En Llanuras de Cania en la posición [-13,-51].
-- En Amakna en la posición [6,16].
-- En Amakna en la posición [4,8].
-- En Astrub en la posición [0,-25].
+- En Amakna en las posiciones [4,30], [6,16], [4,8] y [0,-25].
 - En Brakmar en la posición [-28,32].
-- En Isla de Pandala en la posición [24,-29].
-- En Isla de Frigost en la posición [-66,-60].
-- En Isla de Frigost en la posición [-64,-51].
+- En Llanuras de Cania en la posición [-13,-51].
+- En Isla de Pandala en las posiciones [24,-29], [-66,-60] y [-64,-51].
 - En Incarnam en la posición [2,-2].
 - En Astrub en la posición [2,-16].
 - En Bahía de Sufokia en la posición [10,25].
@@ -159,18 +132,15 @@ Ubicación de talleres de zapateros en Dofus:
 
 ## Talleres de herreros
 Ubicación de talleres de herreros en Dofus:
-- En Amakna en la posición [3,29].
+- En Amakna en las posiciones [3,29], [-1,2] y [6,0].
 - En Bonta en la posición [-30,-56].
 - En Brakmar en la posición [-28,33].
-- En Amakna en la posición [-1,2].
 - En Astrub en la posición [7,-16].
 - En Isla de Frigost en la posición [-74,-33].
-- En Amakna en la posición [6,0].
 - En Incarnam en la posición [2,-4].
 - En Isla de Pandala en la posición [24,-22].
 - En Bahía de Sufokia en la posición [17,24].
-- En Archipiélago de Valonia en la posición [33,-83].
-- En Archipiélago de Valonia en la posición [33,-63].
+- En Archipiélago de Valonia en las posiciones [33,-83] y [33,-63].
 
 ## Talleres de sastres
 Ubicación de talleres de sastres en Dofus:

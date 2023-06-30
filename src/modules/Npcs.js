@@ -172,29 +172,3 @@ export default async function () {
 
    // writeFileSync(join(dirname(filename), '../output/npcs/npcs.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
 };
-
-/*
-{ id: 29, name: 'Mina Gitadora', tokensCount: 1140 }
-{ id: 77, name: 'La Gelexta Dimensión', tokensCount: 940 }
-{ id: 154, name: 'Antro del Dragocerdo', tokensCount: 860 }
-{ id: 211, name: 'Biblioteca del Maestro Cuerbok', tokensCount: 1224 }
-{ id: 243, name: 'Picos Rocosos de los Crujidores', tokensCount: 688 }
-{ id: 319, name: 'El Laberinto del Minotauroro', tokensCount: 1474 }
-{ id: 491, name: 'Mazmorra de las Larvas', tokensCount: 968 }
-{ id: 493, name: 'Enclave de los Blops', tokensCount: 902 }
-{ id: 494, name: 'Templo del Gran Ugah', tokensCount: 748 }
-{ id: 528, name: 'Mazmorra de los Herreros', tokensCount: 751 }
-{ id: 621, name: 'Guarida de los Gélifux', tokensCount: 746 }
-{ id: 622, name: 'Cavernas Gélifux', tokensCount: 1759 }
-{ id: 624, name: 'Cavernas de Tejossus', tokensCount: 653 }
-{ id: 750, name: 'Gultarminator', tokensCount: 2989 }
-{ id: 750, name: 'Torneo', tokensCount: 1272 }
-{ id: 750, name: 'Torneo de los Diez Años', tokensCount: 2095 }
-{ id: 771, name: 'Antro de Grozilla y Grasmera', tokensCount: 626 }
-{ id: 794, name: 'Mazmorra del Conde Kontatrás', tokensCount: 1200 }
-{ id: 804, name: 'Base abisal', tokensCount: 791 }
-{ id: 805, name: 'Base abisal', tokensCount: 848 }
-{ id: 806, name: 'Base abisal', tokensCount: 799 }
-{ id: 885, name: 'Koliseo duelo', tokensCount: 1131 }
-{ id: 899, name: 'Torre de Bethel', tokensCount: 612 }
-*/

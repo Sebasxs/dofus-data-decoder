@@ -1,6 +1,6 @@
 node_modules
-src/input/*
+src/input/*.json
 src/output/*/*
-src/data/serviceAccountKey.
-src/images
+src/data/serviceAccountKey.json
+src/images/*/*
 .env

@@ -129,9 +129,8 @@ Ubicación de Tienda de comestibles en Dofus:
 - En Astrub en la posición [1,-16].
 - En Bonta en la posición [-33,-57].
 - En Brakmar en la posición [-22,34].
-- En Amakna en la posición [1,1].
+- En Amakna en las posiciones [1,1] y [1,-1].
 - En Bahía de Sufokia en la posición [16,25].
-- En Amakna en la posición [1,-1].
 
 ## Vulkania
 Ubicación de lugares en Vulkania en Dofus:

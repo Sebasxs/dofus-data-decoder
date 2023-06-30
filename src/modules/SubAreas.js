@@ -93,8 +93,8 @@ function FormatNamedMaps({ subarea, subareaName, areaName, worldmapName }) {
       const arrayOfMaps = data.sort((a, b) => a.room.localeCompare(b.room));
       const hasOnlyOneCoords = data.every(map => map.coords === baseCoords);
 
-      if (hasOnlyOneCoords) place += `\nPosición en el mapa: ${baseCoords}.\nPrevisualización de los mapas o salas:`;
-      else place += `\nPrevisualización de mapas y sus posiciones:`;
+      if (hasOnlyOneCoords) place += `\nCoordenadas de su ubicación: ${baseCoords}.\nImágenes (mapas) de ${name}:`;
+      else place += `\nCoordenadas e imágenes de ${name}:`;
 
       place += AddSubareaImages(hasOnlyOneCoords, arrayOfMaps);
 
@@ -145,7 +145,7 @@ export default function () {
       );
    };
 
-   writeFileSync(join(dirname(filename), '../output/subareas/subareas.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
-   writeFileSync(join(dirname(filename), '../output/npcs/positions.json'), JSON.stringify(npcPositions), { encoding: 'utf-8' });
-   DB().update(PATHS);
+   // writeFileSync(join(dirname(filename), '../output/subareas/subareas.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
+   // writeFileSync(join(dirname(filename), '../output/npcs/positions.json'), JSON.stringify(npcPositions), { encoding: 'utf-8' });
+   // DB().update(PATHS);
 };

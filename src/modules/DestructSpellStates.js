@@ -22,7 +22,8 @@ function FormatCombinations(combinations) {
    const GetStateNames = (stateArray) => {
       return stateArray.map(state => {
          const stateId = parseInt(state.replace(/\D+/, ''));
-         const stateNameId = SpellStates.find(state => state.id === stateId).nameId;
+         const stateNameId = SpellStates.find(state => state.id === stateId)?.nameId;
+         if (!stateNameId) return 'undefined';
          return i18n.texts[stateNameId].replace(/{.+?>|<.+?}/g, '');
       });
    };
@@ -45,6 +46,7 @@ function FormatCombinations(combinations) {
 
 /**@param {String} expression */
 export default function (expression) {
+   if (['null', ''].includes(expression)) return null;
    let nonGroupedExpression = expression
       .replace(/\(((HS[=!]\d+\|)+)(HS[=!]\d+)\)|[()]/g, '')
       .replace(/^&/, '')

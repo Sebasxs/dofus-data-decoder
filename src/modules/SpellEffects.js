@@ -82,6 +82,7 @@ function FormatEffectZone(rawZone) {
 };
 
 export default function (effects) {
+   if (!effects.length) return null;
    return effects
       .filter(effect => effect.visibleInTooltip)
       .map(effect => {

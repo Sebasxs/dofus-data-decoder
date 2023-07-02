@@ -3,4 +3,5 @@ src/input/*.json
 src/output/*/*
 src/data/serviceAccountKey.json
 src/images/*/*
+src/modules/GetMapImages.js
 .env

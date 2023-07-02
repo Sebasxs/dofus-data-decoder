@@ -5,13 +5,15 @@ Takes Dofus game-files and exports readable files:
 
 *Required input data must be located in the **`src/input`** folder in JSON format.*
 
-# Hints
+## Hints
+Key places in Dofus world.
 ```shell
 $ node ExportHints
 # Output: src/pages/hints/*.md
 ```
 
-# Breeds
+## Breeds
+A brief introduction to Dofus breeds and their gameplay.
 ```Shell
 $ node ExportBreeds
 # Output: src/pages/breeds/*.md
@@ -19,15 +21,24 @@ $ node ExportBreeds
 # Database root 'dofus_breeds'
 ```
 
-# Spells
+## Spells
+All character/monster spells detailed.
 ```Shell
 $ node UpdateSpells
 # Database root 'dofus_spells'
 ```
 
-# Feature descriptions
+## Feature descriptions
+Information about the main features of Dofus.
 ```Shell
 $ node ExportFeatureDescriptions
 # Output: src/pages/guides/*.md
 # Output: src/data/guidebookImageNames.json
+```
+
+## Documents
+Transcription of game books and documents with their respective images.
+```Shell
+$ node ExportDocuments
+# Output: src/pages/documents/*.md
 ```

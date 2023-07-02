@@ -8,6 +8,4 @@ initializeApp({
     databaseURL: 'https://sei-points-41bc7.firebaseio.com'
 });
 
-export default function (path) {
-    return database().ref(path);
-};
+export default (path) => database().ref(path);

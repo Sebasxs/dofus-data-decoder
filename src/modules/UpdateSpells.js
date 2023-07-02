@@ -1,6 +1,6 @@
 import DB from './DB.js';
 import GetSpellEffects from './SpellEffects.js';
-import DestructSpellStates from './DestructSpellStates.js';
+import DestructSpellStates from './DestructureSpellStates.js';
 import i18n from '../input/i18n_es.json' assert {type: 'json'};
 import Spells from '../input/Spells.json' assert {type: 'json'};
 import SpellLevels from '../input/SpellLevels.json' assert {type: 'json'};
@@ -28,7 +28,7 @@ for (const { id, nameId, descriptionId, iconId, spellLevels } of Spells) {
       level_id: spellLevelId,
       name: spellName,
       description: i18n.texts[descriptionId]?.replace(/[{<]+.+?[>}]+/g, '') || null,
-      iconId: iconId,
+      icon_id: iconId,
       effects: effects,
       ap_cost: spellLevel.apCost,
       min_range: spellLevel.minRange,

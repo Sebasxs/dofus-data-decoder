@@ -6,7 +6,7 @@ import Quests from '../input/Quests.json' assert {type: 'json'};
 import Documents from '../input/Documents.json' assert {type: 'json'};
 import ImageUrls from '../data/documentImages.json' assert {type: 'json'};
 
-const documentIdsIgnored = [
+const DocumentIdsIgnored = [
    71,
    133,
    134,
@@ -102,7 +102,7 @@ const documentIdsIgnored = [
 export default function () {
    const _filename = fileURLToPath(import.meta.url);
    for (const { id, titleId, subTitleId, contentId, authorId } of Documents) {
-      if (documentIdsIgnored.find(doc => doc === id)) continue;
+      if (DocumentIdsIgnored.find(doc => doc === id)) continue;
       const removeHtmlTags = /(<([^>]+)>)/gi;
       const subtitle = i18n.texts[subTitleId]?.replace(removeHtmlTags, '');
       let title = i18n.texts[titleId]?.replace(removeHtmlTags, '');

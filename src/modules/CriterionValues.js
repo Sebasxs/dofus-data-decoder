@@ -223,12 +223,12 @@ function FormatCriterion(criterion) {
    return first + FormatCriterion(restIndentation);
 };
 
-export default function (criterion) {
-   criterion = criterion
+export default function (_criterion) {
+   const criterion = _criterion
       .replace(/&(?!\()/g, '\ny ')
       .replace(/&(?=\()/g, '\ny\n')
       .replace(/\|/g, '\no\n');
 
-   const _criterion = FormatCriterion(criterion);
-   return ReplaceCriterionValues(_criterion);
+   const formattedCriterion = FormatCriterion(criterion);
+   return ReplaceCriterionValues(formattedCriterion);
 };

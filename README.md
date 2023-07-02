@@ -22,7 +22,7 @@ $ node ExportBreeds
 ```
 
 ## Spells
-All character/monster spells detailed.
+Update all character/monster spells including effects, criterions and details.
 ```Shell
 $ node UpdateSpells
 # Database root 'dofus_spells'
@@ -41,4 +41,23 @@ Transcription of game books and documents with their respective images.
 ```Shell
 $ node ExportDocuments
 # Output: src/pages/documents/*.md
+```
+
+## Edit map images
+Add map coords, area and watermark to images.
+```Shell
+$ node AddCoordsViaCanvas
+# Input: src/output/maps/map-images/*.jpg
+# Output: src/output/maps/map-coords/*.jpg
+```
+
+## Subareas
+- Update all subareas to the database.
+- Save NPCs positions based on subareas data.
+- Export markdown files with named-maps info and image urls.
+```Shell
+$ node ExportSubareas
+# Database root 'dofus_subareas'
+# Output: src/pages/subareas/*.md
+# Output: src/output/npcs/positions.json
 ```

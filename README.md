@@ -5,13 +5,6 @@ Takes Dofus game files and converts them into readable files:
 
 *Input data must be located in the **`src/input`** folder in JSON format.*
 
-## Hints
-Export coords of key places in Dofus.
-```shell
-$ node ExportHints
-# Output: src/pages/hints/*.md
-```
-
 ## Breeds
 A brief introduction to Dofus breeds and their gameplay.
 ```Shell
@@ -34,27 +27,11 @@ $ node UpdateRecipes
 # Database root updated 'dofus_recipes'
 ```
 
-## Feature descriptions
-Information about the main features of Dofus.
+## Maps
+Update the information of every map in the game.
 ```Shell
-$ node ExportFeatureDescriptions
-# Output: src/pages/guides/*.md
-# Output: src/data/guidebookImageNames.json
-```
-
-## Documents
-Transcription of game books and documents with their respective images.
-```Shell
-$ node ExportDocuments
-# Output: src/pages/documents/*.md
-```
-
-## Add coords
-Add captions and watermark to map images.
-```Shell
-$ node AddCoordsViaCanvas
-# Input: src/output/maps/map-images/*.jpg
-# Output: src/output/maps/map-coords/*.jpg
+$ node UpdateMaps
+# Database root updated 'dofus_maps'
 ```
 
 ## Subareas
@@ -66,4 +43,34 @@ $ node ExportSubareas
 # Database root updated 'dofus_subareas'
 # Database root updated 'dofus_npcs'
 # Output: src/pages/subareas/*.md
+```
+
+## Hints
+Export coords of key places in Dofus.
+```shell
+$ node ExportHints
+# Output: src/pages/hints/*.md
+```
+
+## Documents
+Transcription of game books and documents with their respective images.
+```Shell
+$ node ExportDocuments
+# Output: src/pages/documents/*.md
+```
+
+## Feature descriptions
+Information about the main features of Dofus.
+```Shell
+$ node ExportFeatureDescriptions
+# Output: src/pages/guides/*.md
+# Output: src/data/guidebookImageNames.json
+```
+
+## Map captions
+Add captions and watermark to map images.
+```Shell
+$ node AddCoordsViaCanvas
+# Input: src/output/maps/map-images/*.jpg
+# Output: src/output/maps/map-coords/*.jpg
 ```

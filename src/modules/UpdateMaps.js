@@ -20,18 +20,16 @@ for (const map of MapPositions) {
    const worldmapNameId = WorldMaps.find(worldmap => worldmap.id === map.worldMap)?.nameId;
    const worldmapName = worldmapNameId ? i18n.texts[worldmapNameId] : null;
 
-   PATHS[mapId] = {
-      coords: coords,
-      outdoor: map.outdoor,
-      name: mapName,
-      has_public_paddock: map.hasPublicPaddock,
-      area: areaName,
-      subarea: subareaName,
-      worldmap: worldmapName,
-      level: subarea.level
-   };
+   PATHS[`dofus_maps/${mapId}/coords`] = coords;
+   PATHS[`dofus_maps/${mapId}/outdoor`] = map.outdoor;
+   PATHS[`dofus_maps/${mapId}/name`] = mapName;
+   PATHS[`dofus_maps/${mapId}/has_public_paddock`] = map.hasPublicPaddock;
+   PATHS[`dofus_maps/${mapId}/area`] = areaName;
+   PATHS[`dofus_maps/${mapId}/subarea`] = subareaName;
+   PATHS[`dofus_maps/${mapId}/worldmap`] = worldmapName;
+   PATHS[`dofus_maps/${mapId}/level`] = subarea.level;
 };
 
 const filename = fileURLToPath(import.meta.url);
 // writeFileSync(join(dirname(filename), '../output/maps/maps.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
-DB('dofus_maps').update(PATHS);
+DB().update(PATHS);

@@ -1,7 +1,7 @@
 # Dofus context generator for Corinna
-Takes Dofus game files and converts them into readable files:
-- Markdown files are used for AI context injection.
-- JSON files are uploaded to a NoSql database and treated as menu components.
+Takes Dofus game files and makes them readable:
+- Exported *markdown* files are used for AI context injection.
+- Data uploaded to the database (or exported as JSON files) are treated as menu components.
 
 *Input data must be located in the **`src/input`** folder in JSON format.*
 
@@ -18,6 +18,14 @@ Update all character/monster spells including effects, criterions and details.
 ```Shell
 $ node UpdateSpells
 # Database root updated 'dofus_spells'
+```
+
+## Jobs
+Update the information of all jobs.
+```Shell
+$ node UpdateJobs
+# Output: src/pages/jobs/*.md
+# Database root updated 'dofus_jobs'
 ```
 
 ## Recipes

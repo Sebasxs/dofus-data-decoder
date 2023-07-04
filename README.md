@@ -1,10 +1,10 @@
 # Dofus context generator for Corinna
 Takes Dofus game files and makes them readable:
-- Exported *markdown* files are used for AI context injection.
+- Exported markdown files are used for AI context injection.
 - Data uploaded to the database (or exported as JSON files) are treated as menu components.
+- Input data must be located in the **`src/input`** folder in JSON format.
 
-Scripts written for a hispanic community but that can be adapted to any language by changing the `i18n_(lang).json` file and some sentences.
-*Input data must be located in the **`src/input`** folder in JSON format.*
+**[Corinna](https://github.com/Sebasxs/Corinna)** is a [hispanic community](https://t.co/pin0Y7mWYp) management system, so these scripts also export data in spanish, but can be adapted to any language by changing the `i18n_(lang).json` file and some phrases.
 
 ## Breeds
 A brief introduction to Dofus breeds and their gameplay.
@@ -52,6 +52,19 @@ $ node ExportSubareas
 # Database root updated 'dofus_subareas'
 # Database root updated 'dofus_npcs'
 # Output: src/pages/subareas/*.md
+```
+
+## NPCs
+- Generate NPC descriptions based on their dialogues.
+- Update NPC coords for each quest involved.
+- Export all collected NPC information.
+
+**Note:** fill the *NPCS_TO_UPDATE* array with the IDs you want to export, or leave it empty to update everything.
+```Shell
+$ node UpdateNpcs
+# Database root updated 'dofus_npcs'
+$ node ExportNpcs
+# Output: src/pages/npcs/*.md
 ```
 
 ## Hints

@@ -18,6 +18,46 @@ const configuration = new Configuration({
 });
 
 const openai = new OpenAIApi(configuration);
+const Skins = {
+   10: 'Feca',
+   11: 'Feca',
+   20: 'Osamodas',
+   21: 'Osamodas',
+   30: 'Anutrof',
+   31: 'Anutrof',
+   40: 'Sram',
+   41: 'Sram',
+   50: 'Xelor',
+   51: 'Xelor',
+   60: 'Zurcarak',
+   61: 'Zurcarak',
+   70: 'Aniripsa',
+   71: 'Aniripsa',
+   80: 'Yopuka',
+   81: 'Yopuka',
+   90: 'Ocra',
+   91: 'Ocra',
+   100: 'Sadida',
+   101: 'Sadida',
+   110: 'Sacrógrito',
+   111: 'Sacrógrito',
+   120: 'Pandawa',
+   121: 'Pandawa',
+   1405: 'Tymador',
+   1407: 'Tymador',
+   1437: 'Zobal',
+   1438: 'Zobal',
+   1663: 'Steamer',
+   1664: 'Steamer',
+   3179: 'Selotrop',
+   3180: 'Selotrop',
+   3221: 'Forjalanza',
+   3633: 'Forjalanza',
+   3285: 'Hipermago',
+   3286: 'Hipermago',
+   3498: 'Uginak',
+   3499: 'Uginak'
+};
 
 /**@param {{model: 'gpt-3.5-turbo-0613'|'gpt-3.5-turbo-16k-0613'}} */
 async function completion({ prompt, model }) {
@@ -45,8 +85,8 @@ async function completion({ prompt, model }) {
          console.log(error.message);
       };
       return await completion({ prompt, model });
-   }
-}
+   };
+};
 
 async function GetDescription({ name, dialogs }) {
    const prompt = [{
@@ -100,13 +140,38 @@ El barrio La Matica sufrió derrumbes generados por las fuertes lluvias y muchas
    return description;
 };
 
+/**@param {String} look */
+function GetLookData(look) {
+   const lookdId = parseInt(look.match(/(?<={)\d+/)[0]);
+   const colorData = look.match(/(?<={\d*\|.*\|)(\d=#?[a-f0-9]+,?)+/i);
+   let colors = {};
+   if (colorData) {
+      const colorArr = colorData[0].split(',');
+      for (const color of colorArr) {
+         const [id, value] = color.split('=');
+         colors[id] = (color.includes('#')) ? value : parseInt(value).toString(16);
+      };
+   };
+
+   let breed = null;
+   let imageId = lookdId;
+   const skinMatch = look.match(/(?<={1\|)\d+/);
+   if (lookdId === 1 && skinMatch) {
+      const skinId = parseInt(skinMatch[0]);
+      imageId = 'skin' + skinId;
+      breed = Skins[skinId] || null;
+   };
+
+   return { imageId, breed, colors };
+};
+
 function FilterDuplicatedNames() {
    const cache = new Map();
    const genderType = { 0: 'Masculino', 1: 'Femenino', 2: 'No definido' };
 
    for (const { id, nameId, dialogMessages, gender: genderId, look } of Npcs) {
       const name = i18n.texts[nameId];
-      const imageId = parseInt(look.match(/(?<={)\d+/)[0]);
+      const lookData = GetLookData(look);
       const gender = genderType[genderId];
       const dialogs = dialogMessages.reduce((acc, cur) => {
          const [dialogId, dialogStrId] = cur;
@@ -126,7 +191,7 @@ function FilterDuplicatedNames() {
          continue;
       };
 
-      cache.set(name, { id, name, gender, imageId, dialogs });
+      cache.set(name, { id, name, gender, dialogs, ...lookData });
    };
 
    return cache;
@@ -142,33 +207,34 @@ let index = 0;
 const PATHS = {};
 const startFrom = 0;
 const filteredNpcs = FilterDuplicatedNames();
-for (const [name, { id, gender, imageId, dialogs: allDialogs }] of filteredNpcs) {
+const NPCS_TO_UPDATE = [];
+for (const [name, { id, gender, imageId, breed, colors, dialogs: allDialogs }] of filteredNpcs) {
    index++;
-   if (index < startFrom) continue;
+   if (index < startFrom || (NPCS_TO_UPDATE.length && !NPCS_TO_UPDATE.includes(id))) continue;
    console.log({ index, id, name });
 
    const isOntoralZo = id === 1625;
    const dialogSummarized = LongerDialogSummaries.find(dialog => dialog.id === id)?.summary;
    const dialogs = dialogSummarized || allDialogs.filter((dialog, i) => {
       if (isOntoralZo && saintNames.some(saintName => dialog.includes(saintName))) return false;
-      const firstRepeatedDialogIndex = allDialogs.findIndex(_dialog => _dialog === dialog);
-      const shouldAddDialog = i === firstRepeatedDialogIndex;
+      const firstDialogIndex = allDialogs.findIndex(_dialog => _dialog === dialog);
+      const shouldAddDialog = i === firstDialogIndex;
       return shouldAddDialog;
    });
 
    const saintDialog = Saints[id];
    if (saintDialog) dialogs.push(saintDialog.info);
    if (!dialogs.length) {
-      DB(`dofus_npcs/${id}`).update({ name, gender, imageId });
+      DB(`dofus_npcs/${id}`).update({ name, gender, imageId, breed, colors });
       continue;
    };
 
    const description = await GetDescription({ name, dialogs });
-   const data = { name, gender, imageId, dialogs, description };
+   const data = { name, gender, imageId, dialogs, description, breed, colors };
    DB(`dofus_npcs/${id}`).update(data);
    PATHS[id] = data;
 };
 
 const filename = fileURLToPath(import.meta.url);
 // writeFileSync(join(dirname(filename), '../output/npcs/npcs.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
-// DB('dofus_npcs').update(QuestPositions);
+DB('dofus_npcs').update(QuestPositions);

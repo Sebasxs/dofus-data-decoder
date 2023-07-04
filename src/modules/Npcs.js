@@ -4,12 +4,11 @@ import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
 import { encode } from 'gpt-3-encoder';
 import { Configuration, OpenAIApi } from 'openai';
-import { setTimeout } from 'node:timers/promises';
 import Npcs from '../input/Npcs.json' assert {type: 'json'};
 import i18n from '../input/i18n_es.json' assert {type: 'json'};
-import Saints from '../output/npcs/saints.json' assert {type: 'json'};
-import QuestPositions from '../output/npcs/questMapIds.json' assert {type: 'json'};
-import DialogSummaries from '../output/npcs/dialogSummaries.json' assert {type: 'json'};
+import Saints from '../data/saintsInformation.json' assert {type: 'json'};
+import QuestPositions from '../data/npcLocationInQuests.json' assert {type: 'json'};
+import LongerDialogSummaries from '../data/longerNpcDialogsSummarized.json' assert {type: 'json'};
 import { config } from 'dotenv';
 config();
 
@@ -18,7 +17,6 @@ const configuration = new Configuration({
    apiKey: process.env.OPENAI_API_KEY,
 });
 
-const filename = fileURLToPath(import.meta.url);
 const openai = new OpenAIApi(configuration);
 
 /**@param {{model: 'gpt-3.5-turbo-0613'|'gpt-3.5-turbo-16k-0613'}} */
@@ -38,7 +36,6 @@ async function completion({ prompt, model }) {
 
       console.log(output);
       console.table(response.data?.usage);
-      // await setTimeout(30000);
       if (output.match(/daniela|daneris|gluten|sebastian|matica/gi)) return await completion({ prompt, model });
       return output;
    } catch (error) {
@@ -103,8 +100,7 @@ El barrio La Matica sufrió derrumbes generados por las fuertes lluvias y muchas
    return description;
 };
 
-export default async function () {
-   const PATHS = {};
+function FilterDuplicatedNames() {
    const cache = new Map();
    const genderType = { 0: 'Masculino', 1: 'Femenino', 2: 'No definido' };
 
@@ -133,40 +129,46 @@ export default async function () {
       cache.set(name, { id, name, gender, imageId, dialogs });
    };
 
-   const saintNames = ['Otul', 'Kimykay', 'multa', 'broma', 'Siluate', 'el santo', 'El santo', 'la santa', 'Igmar', 'decena', 'equivocas', 'Vermo', 'oficio'];
-   for (const saintId in Saints) {
-      const { name, info } = Saints[saintId];
-      saintNames.push(name);
-   };
-
-   let index = 0;
-   const startFrom = 0;
-   for (const [name, { id, gender, imageId, dialogs: allDialogs }] of cache) {
-      index++;
-      if (index < startFrom || id !== 0) continue;
-      console.log({ index, id, name });
-
-      const dialogSummarized = DialogSummaries.find(dialog => dialog.id === id)?.summary;
-      const dialogs = dialogSummarized || allDialogs.filter((dialog, i) => {
-         if (id === 1625 && saintNames.some(saintName => dialog.includes(saintName))) return false;
-         return allDialogs.findIndex(_dialog => _dialog === dialog) === i;
-      });
-
-      const saintDialog = Saints[id];
-      if (saintDialog) dialogs.push(saintDialog.info);
-      if (!dialogs.length) {
-         DB(`dofus_npcs/${id}`).update({ name, gender, imageId });
-         continue;
-      };
-
-      const description = await GetDescription({ name, dialogs });
-      const data = { name, gender, imageId, dialogs, description };
-      DB(`dofus_npcs/${id}`).update(data);
-      PATHS[id] = data;
-   };
-
-   // await DB('dofus_npcs').update(PATHS);
-   // await DB('dofus_npcs').update(QuestPositions);
-
-   // writeFileSync(join(dirname(filename), '../output/npcs/npcs.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
+   return cache;
 };
+
+const saintNames = ['Otul', 'Kimykay', 'multa', 'broma', 'Siluate', 'el santo', 'El santo', 'la santa', 'Igmar', 'decena', 'equivocas', 'Vermo', 'oficio'];
+for (const saintId in Saints) {
+   const { name, info } = Saints[saintId];
+   saintNames.push(name);
+};
+
+let index = 0;
+const PATHS = {};
+const startFrom = 0;
+const filteredNpcs = FilterDuplicatedNames();
+for (const [name, { id, gender, imageId, dialogs: allDialogs }] of filteredNpcs) {
+   index++;
+   if (index < startFrom) continue;
+   console.log({ index, id, name });
+
+   const isOntoralZo = id === 1625;
+   const dialogSummarized = LongerDialogSummaries.find(dialog => dialog.id === id)?.summary;
+   const dialogs = dialogSummarized || allDialogs.filter((dialog, i) => {
+      if (isOntoralZo && saintNames.some(saintName => dialog.includes(saintName))) return false;
+      const firstRepeatedDialogIndex = allDialogs.findIndex(_dialog => _dialog === dialog);
+      const shouldAddDialog = i === firstRepeatedDialogIndex;
+      return shouldAddDialog;
+   });
+
+   const saintDialog = Saints[id];
+   if (saintDialog) dialogs.push(saintDialog.info);
+   if (!dialogs.length) {
+      DB(`dofus_npcs/${id}`).update({ name, gender, imageId });
+      continue;
+   };
+
+   const description = await GetDescription({ name, dialogs });
+   const data = { name, gender, imageId, dialogs, description };
+   DB(`dofus_npcs/${id}`).update(data);
+   PATHS[id] = data;
+};
+
+const filename = fileURLToPath(import.meta.url);
+// writeFileSync(join(dirname(filename), '../output/npcs/npcs.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
+// DB('dofus_npcs').update(QuestPositions);

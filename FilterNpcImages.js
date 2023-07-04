@@ -3,6 +3,9 @@ import { join, dirname } from 'path';
 import { readdirSync, copyFileSync, rmSync } from 'fs';
 const _dirname = dirname(fileURLToPath(import.meta.url));
 
+const front = '_0';
+const threeQ = '_1';
+const negative3Q = '_3';
 const statesPriorityOrder = ['AnimAttaque4', 'AnimAttaque3', 'AnimAttaque2', 'AnimAttaque1', 'AnimAttaque0', 'AnimMarche', "AnimState1"];
 const imagesPath = join(_dirname, `src/images`);
 const npcBonesDir = readdirSync(imagesPath + '/output', { encoding: 'utf-8' });
@@ -11,7 +14,7 @@ for (const folder of npcBonesDir) {
    const npcDir = readdirSync(imagesPath + `/output/${folder}/sprites`, { encoding: 'utf-8' });
    for (const anim of statesPriorityOrder) {
       const animationFolder = npcDir.find(spriteFolder => {
-         return ['_1', '_3', '_0'].some(state => spriteFolder.includes(anim + state))
+         return [threeQ, negative3Q, front].some(state => spriteFolder.includes(anim + state))
       });
 
       if (!animationFolder) continue;

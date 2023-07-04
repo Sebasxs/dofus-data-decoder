@@ -3,6 +3,7 @@ Takes Dofus game files and makes them readable:
 - Exported *markdown* files are used for AI context injection.
 - Data uploaded to the database (or exported as JSON files) are treated as menu components.
 
+Scripts written for a hispanic community but that can be adapted to any language by changing the `i18n_(lang).json` file and some sentences.
 *Input data must be located in the **`src/input`** folder in JSON format.*
 
 ## Breeds

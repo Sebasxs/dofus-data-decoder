@@ -1,6 +1,6 @@
 import DB from './DB.js';
-import GetSpellEffects from './SpellEffects.js';
-import DestructSpellStates from './DestructureSpellStates.js';
+import GetSpellEffects from './GetSpellEffects.js';
+import GetCastConditions from './GetSpellCastConditions.js';
 import i18n from '../input/i18n_es.json' assert {type: 'json'};
 import Spells from '../input/Spells.json' assert {type: 'json'};
 import SpellLevels from '../input/SpellLevels.json' assert {type: 'json'};
@@ -35,7 +35,7 @@ for (const { id, nameId, descriptionId, iconId, spellLevels } of Spells) {
       range: spellLevel.range,
       min_player_level: spellLevel.minPlayerLevel,
       details: details,
-      cast_condition_paths: DestructSpellStates(spellLevel.statesCriterion),
+      cast_condition_paths: GetCastConditions(spellLevel.statesCriterion),
       critical_effects: GetSpellEffects(spellLevel.criticalEffect)
    };
 };

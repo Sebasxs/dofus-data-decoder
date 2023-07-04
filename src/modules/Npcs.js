@@ -8,7 +8,6 @@ import { setTimeout } from 'node:timers/promises';
 import Npcs from '../input/Npcs.json' assert {type: 'json'};
 import i18n from '../input/i18n_es.json' assert {type: 'json'};
 import Saints from '../output/npcs/saints.json' assert {type: 'json'};
-import NpcPositions from '../output/npcs/positions.json' assert {type: 'json'};
 import QuestPositions from '../output/npcs/questMapIds.json' assert {type: 'json'};
 import DialogSummaries from '../output/npcs/dialogSummaries.json' assert {type: 'json'};
 import { config } from 'dotenv';
@@ -167,7 +166,6 @@ export default async function () {
    };
 
    // await DB('dofus_npcs').update(PATHS);
-   // await DB('dofus_npcs').update(NpcPositions);
    // await DB('dofus_npcs').update(QuestPositions);
 
    // writeFileSync(join(dirname(filename), '../output/npcs/npcs.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });

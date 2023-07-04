@@ -12,16 +12,15 @@ import MapPositions from '../input/MapPositions.json' assert {type: 'json'};
 
 const PATHS = {};
 const npcPositions = {};
-const ignoredSubareas = [1021];
+const ignoredSubareaIds = [1021];
 const filename = fileURLToPath(import.meta.url);
 const MapUrls = await DB('dofus_maps').once('value');
 
-function UpdateNpcs(npcs) {
-   for (const [npcId, npcMapId] of npcs) {
+function UpdateNpcs(subareaNpcs) {
+   for (const [npcId, npcMapId] of subareaNpcs) {
       npcPositions[`${parseInt(npcId)}/map_id`] = parseInt(npcMapId);
       const npcMap = MapPositions.find(map => map.id === npcMapId);
-      const coords = `[${npcMap.posX},${npcMap.posY}]`;
-      npcPositions[`${parseInt(npcId)}/coords`] = coords;
+      npcPositions[`${parseInt(npcId)}/coords`] = `[${npcMap.posX},${npcMap.posY}]`;
    };
 };
 
@@ -104,14 +103,14 @@ function ExportNamedMaps({ subarea, subareaName, areaName, worldmapName }) {
 };
 
 for (const subarea of SubAreas) {
-   if (ignoredSubareas.includes(subarea.id)) continue;
+   if (ignoredSubareaIds.includes(subarea.id)) continue;
    const subareaName = i18n.texts[subarea.nameId];
    const area = Areas.find(area => area.id === subarea.areaId);
    const areaName = i18n.texts[area.nameId];
    const worldmapNameId = WorldMaps.find(worldmap => worldmap.id === subarea.worldmapId)?.nameId;
    const worldmapName = worldmapNameId ? i18n.texts[worldmapNameId] : null;
 
-   PATHS[`dofus_subareas/${subarea.id}`] = {
+   PATHS[subarea.id] = {
       associated_zaap_map_id: subarea.associatedZaapMapId,
       area: areaName,
       level: subarea.level,
@@ -134,5 +133,6 @@ for (const subarea of SubAreas) {
    ExportNamedMaps({ subarea, subareaName, areaName, worldmapName });
 };
 
-writeFileSync(join(dirname(filename), '../output/npcs/positions.json'), JSON.stringify(npcPositions), { encoding: 'utf-8' });
-DB().update(PATHS);
+// writeFileSync(join(dirname(filename), '../output/npcs/positions.json'), JSON.stringify(npcPositions), { encoding: 'utf-8' });
+DB('dofus_npcs').update(npcPositions);
+DB('dofus_subareas').update(PATHS);

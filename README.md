@@ -1,12 +1,12 @@
-# Dofus data-formatter for Corinna
-Takes Dofus game-files and exports readable files:
+# Dofus context generator for Corinna
+Takes Dofus game files and converts them into readable files:
 - Markdown files are used for AI context injection.
 - JSON files are uploaded to a NoSql database and treated as menu components.
 
-*Required input data must be located in the **`src/input`** folder in JSON format.*
+*Input data must be located in the **`src/input`** folder in JSON format.*
 
 ## Hints
-Key places in Dofus world.
+Export coords of key places in Dofus.
 ```shell
 $ node ExportHints
 # Output: src/pages/hints/*.md
@@ -17,15 +17,21 @@ A brief introduction to Dofus breeds and their gameplay.
 ```Shell
 $ node ExportBreeds
 # Output: src/pages/breeds/*.md
-# Output: src/output/breeds/data.json
-# Database root 'dofus_breeds'
+# Database root updated 'dofus_breeds'
 ```
 
 ## Spells
 Update all character/monster spells including effects, criterions and details.
 ```Shell
 $ node UpdateSpells
-# Database root 'dofus_spells'
+# Database root updated 'dofus_spells'
+```
+
+## Recipes
+Update all item recipes.
+```Shell
+$ node UpdateRecipes
+# Database root updated 'dofus_recipes'
 ```
 
 ## Feature descriptions
@@ -43,8 +49,8 @@ $ node ExportDocuments
 # Output: src/pages/documents/*.md
 ```
 
-## Edit map images
-Add map coords, area and watermark to images.
+## Add coords
+Add captions and watermark to map images.
 ```Shell
 $ node AddCoordsViaCanvas
 # Input: src/output/maps/map-images/*.jpg
@@ -52,12 +58,12 @@ $ node AddCoordsViaCanvas
 ```
 
 ## Subareas
-- Update all subareas to the database.
-- Save NPCs positions based on subareas data.
+- Update all subareas info.
+- Update NPCs positions based on subareas data.
 - Export markdown files with named-maps info and image urls.
 ```Shell
 $ node ExportSubareas
-# Database root 'dofus_subareas'
+# Database root updated 'dofus_subareas'
+# Database root updated 'dofus_npcs'
 # Output: src/pages/subareas/*.md
-# Output: src/output/npcs/positions.json
 ```

@@ -149,7 +149,7 @@ function GetLookData(look) {
       const colorArr = colorData[0].split(',');
       for (const color of colorArr) {
          const [id, value] = color.split('=');
-         colors[id] = (color.includes('#')) ? value : parseInt(value).toString(16);
+         colors[id] = (color.includes('#')) ? value : '#' + parseInt(value).toString(16);
       };
    };
 
@@ -237,4 +237,4 @@ for (const [name, { id, gender, imageId, breed, colors, dialogs: allDialogs }] o
 
 const filename = fileURLToPath(import.meta.url);
 // writeFileSync(join(dirname(filename), '../output/npcs/npcs.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
-DB('dofus_npcs').update(QuestPositions);
+// DB('dofus_npcs').update(QuestPositions);

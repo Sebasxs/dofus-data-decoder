@@ -96,3 +96,10 @@ $ node AddCoordsViaCanvas
 # Input: src/output/maps/map-images/*.jpg
 # Output: src/output/maps/map-coords/*.jpg
 ```
+
+## Dungeons
+Update key information about every dungeon.
+```Shell
+$ node UpdateDungeons
+# Database root updated 'dofus_dungeons'
+```

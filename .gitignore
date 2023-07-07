@@ -5,4 +5,5 @@ src/data/serviceAccountKey.json
 src/images/*/*
 src/modules/GetMapImages.js
 src/pages/*/*
+FetchBuiltLooks.js
 .env

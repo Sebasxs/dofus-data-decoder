@@ -155,11 +155,10 @@ function GetLookData(look) {
 
    let breed = null;
    let imageId = lookdId;
-   const skinMatch = look.match(/(?<={1\|)\d+/);
-   if (lookdId === 1 && skinMatch) {
-      const skinId = parseInt(skinMatch[0]);
-      imageId = 'skin' + skinId;
-      breed = Skins[skinId] || null;
+   if (lookdId === 1) {
+      imageId = null;
+      const skinId = look.match(/(?<={1\|)\d+/)?.[0];
+      breed = Skins[skinId] ?? null;
    };
 
    return { imageId, breed, colors };
@@ -225,12 +224,12 @@ for (const [name, { id, gender, imageId, breed, colors, dialogs: allDialogs }] o
    const saintDialog = Saints[id];
    if (saintDialog) dialogs.push(saintDialog.info);
    if (!dialogs.length) {
-      DB(`dofus_npcs/${id}`).update({ name, gender, imageId, breed, colors });
+      DB(`dofus_npcs/${id}`).update({ name, gender, breed, colors, image_id: imageId });
       continue;
    };
 
    const description = await GetDescription({ name, dialogs });
-   const data = { name, gender, imageId, dialogs, description, breed, colors };
+   const data = { name, gender, dialogs, description, breed, colors, image_id: imageId };
    DB(`dofus_npcs/${id}`).update(data);
    PATHS[id] = data;
 };

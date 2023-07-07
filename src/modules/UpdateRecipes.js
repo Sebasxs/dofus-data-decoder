@@ -28,4 +28,4 @@ for (const { resultId, resultNameId, resultLevel, resultTypeId, ingredientIds, q
 };
 const _filename = fileURLToPath(import.meta.url);
 // writeFileSync(join(dirname(_filename), '../output/recipes/recipes.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
-DB('dofus_recipes').update(PATHS);
+DB('dofus_recipes').update(PATHS).then(() => { console.log('Recipes updated!') });

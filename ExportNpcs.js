@@ -61,7 +61,7 @@ function GetPositions({ questPositions, mapId }) {
    if (mapId) {
       const coords = maps.child(`${mapId}/coords`).val();
       const subarea = maps.child(`${mapId}/subarea`).val();
-      uniquePositions.add(`${coords} de ${subarea}`);
+      uniquePositions.add(`${coords} en la zona de ${subarea}`);
       mapUrl = maps.child(`${mapId}/image_url`).val();
    };
 
@@ -69,7 +69,7 @@ function GetPositions({ questPositions, mapId }) {
       mapUrl ??= maps.child(`${pos.key}/image_url`).val();
       const coords = maps.child(`${pos.key}/coords`).val();
       const subarea = maps.child(`${pos.key}/subarea`).val();
-      uniquePositions.add(`${coords} de ${subarea}`);
+      uniquePositions.add(`${coords} en la zona de ${subarea}`);
    });
 
    if (!uniquePositions.size) return { positions: 'Desconozco su ubicación exacta.', mapUrl };
@@ -81,6 +81,15 @@ function GetPositions({ questPositions, mapId }) {
    return {
       positions: content + `, pero también puedes encontrarle en ${formatter.format(positions)} según las misiones que tengas activas.`,
       mapUrl
+   };
+};
+
+function AddSection({ infoArr, key, doc }) {
+   if (infoArr) {
+      infoArr.push(doc);
+      npcDocs.set(key, infoArr);
+   } else {
+      npcDocs.set(key, [doc]);
    };
 };
 
@@ -96,32 +105,26 @@ npcs.forEach(npc => {
    const gender = npc.child('gender').val();
    const colors = npc.child('colors');
    const mapId = npc.child('map_id').val();
-   const imageId = npc.child('imageId').val();
+   const imageId = npc.child('image_id').val();
    const breed = npc.child('breed').val();
    const questPositions = npc.child('quest_positions');
-   const imageUrl = looks.hasChild(`${imageId}/anim_image_url`)
-      ? looks.child(`${imageId}/anim_image_url`).val()
-      : looks.child(`${imageId}/static_image_url`).val();
-
-   let doc = '';
    const infoArr = npcDocs.get(key);
    const description = npc.child('description').val();
    const descriptionSections = GetDescriptionSections({ name, description });
    const { positions, mapUrl } = GetPositions({ mapId, questPositions });
-   descriptionSections.forEach((section, i) => {
-      doc += `## ${name}, ID${id} - ${i}\n${section}`;
-      if (i === 0) {
-         if (!breed && imageUrl) doc += `\n${name} tiene la siguiente apariencia:\n![npc_img](${imageUrl})`;
-         doc += GetTraits({ breed, gender, colors });
-         doc += (colors.exists() ? '.\n' : ', ') + positions;
-         if (mapUrl) doc += ` Esta es una imagen del mapa donde está:\n![map_img](${mapUrl})`;
-      };
 
-      if (infoArr) {
-         infoArr.push(doc);
-         npcDocs.set(key, infoArr);
-      } else npcDocs.set(key, [doc]);
-      doc = '';
+   let doc;
+   descriptionSections.forEach((section, i) => {
+      doc = `## ${name}, ID${id} - ${i}\n${section}`;
+      if (i > 0) return AddSection({ infoArr, key, doc });
+      if (imageId) {
+         const imageUrl = looks.child(`${imageId}/anim_image_url`).val() || looks.child(`${imageId}/static_image_url`).val();
+         doc += `\n${name} tiene la siguiente apariencia:\n![npc_img](${imageUrl})`;
+      };
+      doc += GetTraits({ breed, gender, colors });
+      doc += (colors.exists() ? '.\n' : ', ') + positions;
+      if (mapUrl) doc += ` Esta es una imagen del mapa donde está:\n![map_img](${mapUrl})`;
+      AddSection({ infoArr, key, doc });
    });
 });
 

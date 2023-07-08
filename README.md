@@ -54,7 +54,7 @@ $ node ExportSubareas
 # Output: src/pages/subareas/*.md
 ```
 
-## NPCs
+## [NPCs](https://github.com/Sebasxs/format-dofus-data/blob/main/ExportNpcs.js)
 - Generate NPC descriptions based on their dialogues.
 - Update NPC coords for each quest involved.
 - Export all collected NPC information.
@@ -65,6 +65,13 @@ $ node UpdateNpcs
 # Database root updated 'dofus_npcs'
 $ node ExportNpcs
 # Output: src/pages/npcs/*.md
+```
+
+## Quests
+Extract and update quest information.
+```Shell
+$ node UpdateQuests
+# Database root updated 'dofus_quests'
 ```
 
 ## Hints
@@ -97,7 +104,7 @@ $ node AddCoordsViaCanvas
 # Output: src/output/maps/map-coords/*.jpg
 ```
 
-## Dungeons
+## [Dungeons](https://github.com/Sebasxs/format-dofus-data/blob/main/UpdateDungeons.js)
 Update key information about every dungeon.
 ```Shell
 $ node UpdateDungeons

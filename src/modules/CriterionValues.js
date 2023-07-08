@@ -28,7 +28,7 @@ function GetMapCoords(mapId) {
    };
 };
 
-function ReplaceCriterionValues(criterion) {
+function ReplaceCriterionValues({ criterion, DungeonByBossId }) {
    const playerLevel = criterion.matchAll(/PL[<>]\d+/gm);
    for (const [PL] of playerLevel) {
       const operator = PL.includes('>') ? 'mayor' : 'menor';
@@ -84,7 +84,7 @@ function ReplaceCriterionValues(criterion) {
       const operator = Qo.includes('=') ? 'Estar en' : 'Tener cumplido';
       const objectiveId = parseInt(Qo.replace(/\D+/, ''));
       const { typeId, parameters } = QuestObjectives.find(objective => objective.id === objectiveId);
-      const { text } = QuestObjectiveData(typeId, parameters);
+      const { text } = QuestObjectiveData({ typeId, parameters, DungeonByBossId });
       const QoText = `${operator} el objetivo: «${text}»`;
       criterion = criterion.replace(Qo, QoText);
    };
@@ -210,25 +210,26 @@ function ReplaceCriterionValues(criterion) {
    return criterion.replace(/BT=1|\n?\t*(y\s)?(Sc|Sv)=\d+,?\d+?/g, '');
 };
 
-function FormatCriterion(criterion) {
+function FormatCriterionRecursively(criterion) {
    if (!criterion.match(/[()]/)) return criterion;
    if (criterion.includes('(')) {
       const [first, ...rest] = criterion.split('(');
       const restIndentation = '\t' + rest.join('(').replace(/\n/g, '\n\t');
       criterion = first + restIndentation;
-      return FormatCriterion(criterion);
+      return FormatCriterionRecursively(criterion);
    }
    const [first, ...rest] = criterion.split(')');
    const restIndentation = rest.join(')').replace(/\n\t/g, '\n');
-   return first + FormatCriterion(restIndentation);
+   return first + FormatCriterionRecursively(restIndentation);
 };
 
-export default function (_criterion) {
-   const criterion = _criterion
+export default function ({ startCriterion, DungeonByBossId }) {
+   const _startCriterion = startCriterion
       .replace(/&(?!\()/g, '\ny ')
       .replace(/&(?=\()/g, '\ny\n')
       .replace(/\|/g, '\no\n');
 
-   const formattedCriterion = FormatCriterion(criterion);
-   return ReplaceCriterionValues(formattedCriterion);
+   const criterion = FormatCriterionRecursively(_startCriterion);
+   const criterionAsText = ReplaceCriterionValues({ criterion, DungeonByBossId });
+   return criterionAsText || 'Ninguno';
 };

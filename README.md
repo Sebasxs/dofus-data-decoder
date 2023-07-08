@@ -1,13 +1,20 @@
 <h1 align="center">Dofus data decoder</h1>
+<p align="center">
+<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/sebasxs/dofus-data-decoder?label=Repo%20size">
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/sebasxs/dofus-data-decoder?color=8A2BE2">
+<img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/sebasxs/dofus-data-decoder/main?label=Last%20Commit">
+<img alt="Static Badge" src="https://img.shields.io/badge/Discord-7289da?logo=discord&logoColor=white&link=%3Ca%20href%3D%22https%3A%2F%2Fdiscord.gg%2FRQpAMVB%22%3EDiscord%3C%2Fa%3E">
+</p>
 
 ## About data
-- 📝 The exported .MD files are useful for context injection into [Corinna's](https://github.com/Sebasxs/Corinna) AI-based responses; the information is splitted into sections and rarely exceeds 300 tokens each.
+- 📝 The exported `.md` files are useful for context injection into [Corinna's](https://github.com/Sebasxs/Corinna) AI-based responses; the information is splitted into sections and rarely exceeds 300 tokens each.
 - 🔗 Data uploaded to the database (or exported as JSON files) are treated as menu components on [Discord](https://t.co/pin0Y7mWYp).
-- ⚠ Input data must be located in the **`/input`** folder in JSON format.
+- ⚠ Input data must be located in the **`/input`** folder in `JSON` format.
 
 > The language can be changed by changing the `i18n_(lang).json` file and some phrases around the scripts.
-Corinna is a hispanic community management system, therefore the exported data is by default in `spanish`.
+> Corinna is a hispanic community management system, therefore the exported data is by default in `spanish`.
 
+> This is not a game decompiler, but a bunch of scripts that interpret game data.
 ---
 
 ## Scripts

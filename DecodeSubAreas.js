@@ -11,16 +11,15 @@ import WorldMaps from './src/input/WorldMaps.json' assert {type: 'json'};
 import MapPositions from './src/input/MapPositions.json' assert {type: 'json'};
 
 const PATHS = {};
-const npcPositions = {};
 const ignoredSubareaIds = [1021];
 const filename = fileURLToPath(import.meta.url);
 const MapUrls = await DB('dofus_maps').once('value');
 
 function UpdateNpcs(subareaNpcs) {
    for (const [npcId, npcMapId] of subareaNpcs) {
-      npcPositions[`${parseInt(npcId)}/map_id`] = parseInt(npcMapId);
+      PATHS[`dofus_npcs/${parseInt(npcId)}/map_id`] = parseInt(npcMapId);
       const npcMap = MapPositions.find(map => map.id === npcMapId);
-      npcPositions[`${parseInt(npcId)}/coords`] = `[${npcMap.posX},${npcMap.posY}]`;
+      PATHS[`dofus_npcs/${parseInt(npcId)}/coords`] = `[${npcMap.posX},${npcMap.posY}]`;
    };
 };
 
@@ -109,30 +108,28 @@ for (const subarea of SubAreas) {
    const areaName = i18n.texts[area.nameId];
    const worldmapNameId = WorldMaps.find(worldmap => worldmap.id === subarea.worldmapId)?.nameId;
    const worldmapName = worldmapNameId ? i18n.texts[worldmapNameId] : null;
+   const monsters = subarea.monsters.reduce((acc, cur) => {
+      const monster = Monsters.find(monster => monster.id === cur);
+      acc[cur] = i18n.texts[monster.nameId];
+      return acc;
+   }, {});
 
-   PATHS[subarea.id] = {
-      associated_zaap_map_id: subarea.associatedZaapMapId,
-      area: areaName,
-      level: subarea.level,
-      worldmap: worldmapName,
-      name: subareaName,
-      monsters: subarea.monsters.reduce((acc, cur) => {
-         const monster = Monsters.find(monster => monster.id === cur);
-         acc[cur] = i18n.texts[monster.nameId];
-         return acc;
-      }, {}),
-      harvestables: subarea.harvestables.reduce((acc, cur) => {
-         const item = Items.find(item => item.id === cur);
-         if (item.typeId === 226) return acc;
-         acc[cur] = i18n.texts[item.nameId];
-         return acc;
-      }, {})
-   };
+   const harvestables = subarea.harvestables.reduce((acc, cur) => {
+      const item = Items.find(item => item.id === cur);
+      if (item.typeId !== 226) acc[cur] = i18n.texts[item.nameId];
+      return acc;
+   }, {});
+
+   PATHS[`dofus_subareas/${subarea.id}/name`] = subareaName;
+   PATHS[`dofus_subareas/${subarea.id}/area`] = areaName;
+   PATHS[`dofus_subareas/${subarea.id}/level`] = subarea.level;
+   PATHS[`dofus_subareas/${subarea.id}/worldmap`] = worldmapName;
+   PATHS[`dofus_subareas/${subarea.id}/associated_zaap_map_id`] = subarea.associatedZaapMapId;
+   PATHS[`dofus_subareas/${subarea.id}/monsters`] = monsters;
+   PATHS[`dofus_subareas/${subarea.id}/harvestables`] = harvestables;
 
    UpdateNpcs(subarea.npcs);
    ExportNamedMaps({ subarea, subareaName, areaName, worldmapName });
 };
 
-// writeFileSync(join(dirname(filename), '../output/npcs/positions.json'), JSON.stringify(npcPositions), { encoding: 'utf-8' });
-DB('dofus_npcs').update(npcPositions);
 DB('dofus_subareas').update(PATHS);

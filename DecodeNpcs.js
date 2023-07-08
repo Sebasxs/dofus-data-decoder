@@ -198,15 +198,14 @@ for (const saintId in Saints) {
    saintNames.push(name);
 };
 
-let index = 0;
+let counter = 0;
 const PATHS = {};
-const startFrom = 0;
 const filteredNpcs = FilterDuplicatedNames();
 const NPCS_TO_UPDATE = [];
 for (const [name, { id, gender, imageId, breed, colors, dialogs: allDialogs }] of filteredNpcs) {
-   index++;
-   if (index < startFrom || (NPCS_TO_UPDATE.length && !NPCS_TO_UPDATE.includes(id))) continue;
-   console.log({ index, id, name });
+   counter++;
+   if (NPCS_TO_UPDATE.length && !NPCS_TO_UPDATE.includes(id)) continue;
+   console.log({ counter, id, name });
 
    const isOntoralZo = id === 1625;
    const dialogSummarized = LongerDialogSummaries.find(dialog => dialog.id === id)?.summary;

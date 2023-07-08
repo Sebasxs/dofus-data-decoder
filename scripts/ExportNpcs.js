@@ -1,4 +1,4 @@
-import DB from './src/modules/DB.js';
+import DB from '../src/modules/DB.js';
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';

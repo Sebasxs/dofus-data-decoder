@@ -3,7 +3,7 @@ src/input/*.json
 src/output/*/*
 src/data/serviceAccountKey.json
 src/images/*/*
-src/modules/GetMapImages.js
 src/pages/*/*
-FetchBuiltLooks.js
+scripts/GetMapImages.js
+scripts/FetchBuiltLooks.js
 .env

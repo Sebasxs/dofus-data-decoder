@@ -1,12 +1,12 @@
-import DB from './src/modules/DB.js';
+import DB from '../src/modules/DB.js';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
 import { writeFileSync } from 'fs';
-import Items from './src/input/Items.json' assert {type: 'json'};
-import i18n from './src/input/i18n_es.json' assert {type: 'json'};
-import InputJobs from './src/input/Jobs.json' assert {type: 'json'};
-import Skills from './src/input/Skills.json' assert {type: 'json'};
-import ItemTypes from './src/input/ItemTypes.json' assert {type: 'json'};
+import Items from '../src/input/Items.json' assert {type: 'json'};
+import i18n from '../src/input/i18n_es.json' assert {type: 'json'};
+import InputJobs from '../src/input/Jobs.json' assert {type: 'json'};
+import Skills from '../src/input/Skills.json' assert {type: 'json'};
+import ItemTypes from '../src/input/ItemTypes.json' assert {type: 'json'};
 
 const PATHS = {};
 const Jobs = InputJobs.slice(1, -2);

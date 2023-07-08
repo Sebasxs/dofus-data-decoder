@@ -1,10 +1,10 @@
-import DB from './src/modules/DB.js';
+import DB from '../src/modules/DB.js';
 import { encode } from 'gpt-3-encoder';
 import { Configuration, OpenAIApi } from 'openai';
-import Npcs from './src/input/Npcs.json' assert {type: 'json'};
-import i18n from './src/input/i18n_es.json' assert {type: 'json'};
-import Saints from './src/data/saintsInformation.json' assert {type: 'json'};
-import LongerDialogSummaries from './src/data/longerNpcDialogsSummarized.json' assert {type: 'json'};
+import Npcs from '../src/input/Npcs.json' assert {type: 'json'};
+import i18n from '../src/input/i18n_es.json' assert {type: 'json'};
+import Saints from '../src/data/saintsInformation.json' assert {type: 'json'};
+import LongerDialogSummaries from '../src/data/longerNpcDialogsSummarized.json' assert {type: 'json'};
 import { config } from 'dotenv';
 config();
 

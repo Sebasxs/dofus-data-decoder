@@ -1,10 +1,10 @@
-import DB from './src/modules/DB.js';
+import DB from '../src/modules/DB.js';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
-import { writeFile } from 'fs/promises';
-import i18n from './src/input/i18n_es.json' assert {type: 'json'};
-import Breeds from './src/input/Breeds.json' assert {type: 'json'};
-import SpellVariants from './src/input/SpellVariants.json' assert {type: 'json'};
+import { writeFileSync } from 'fs';
+import i18n from '../src/input/i18n_es.json' assert {type: 'json'};
+import Breeds from '../src/input/Breeds.json' assert {type: 'json'};
+import SpellVariants from '../src/input/SpellVariants.json' assert {type: 'json'};
 
 const BreedIllus = {
    1: "https://cdn.discordapp.com/attachments/1103795819691376721/1103795922716078251/1.png",
@@ -69,8 +69,8 @@ for (const { id, shortNameId, descriptionId, gameplayClassDescriptionId, breedSp
    for (const { skill, description } of gameplay) {
       markdown += `\n\n## ${skill}\n${description}`;
    };
-   await writeFile(join(dirname(filename), `../pages/breeds/${id}.md`), markdown, { encoding: 'utf-8' });
+   writeFileSync(join(dirname(filename), `../pages/breeds/${id}.md`), markdown, { encoding: 'utf-8' });
 };
 
-await writeFile(join(dirname(filename), '../output/breeds/breeds.json'), JSON.stringify(data), { encoding: 'utf-8' });
+writeFileSync(join(dirname(filename), '../output/breeds/breeds.json'), JSON.stringify(data), { encoding: 'utf-8' });
 DB('dofus_breeds').update(data);

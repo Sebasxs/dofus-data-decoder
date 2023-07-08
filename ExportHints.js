@@ -1,13 +1,13 @@
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
-import Hints from '../input/Hints.json' assert {type: 'json'};
-import Areas from '../input/Areas.json' assert {type: 'json'};
-import i18n from '../input/i18n_es.json' assert {type: 'json'};
-import Subareas from '../input/SubAreas.json' assert {type: 'json'};
-import HintCategories from '../input/HintCategory.json' assert {type: 'json'};
+import Hints from './src/input/Hints.json' assert {type: 'json'};
+import Areas from './src/input/Areas.json' assert {type: 'json'};
+import i18n from './src/input/i18n_es.json' assert {type: 'json'};
+import Subareas from './src/input/SubAreas.json' assert {type: 'json'};
+import HintCategories from './src/input/HintCategory.json' assert {type: 'json'};
 
-const _filename = fileURLToPath(import.meta.url);
+const filename = fileURLToPath(import.meta.url);
 for (const { nameId, id } of HintCategories) {
    const categoryName = i18n.texts[nameId];
    let markdown = `## ${categoryName}\n${categoryName} en el mundo de Dofus:`;
@@ -23,5 +23,5 @@ for (const { nameId, id } of HintCategories) {
          const subareaName = i18n.texts[subareaNameId];
          markdown += `\n- ${hintName} en ${areaName} en la posición [${x},${y}].`;
       });
-   writeFileSync(join(dirname(_filename), `../pages/hints/${id}.md`), markdown, { encoding: 'utf-8' });
+   writeFileSync(join(dirname(filename), `../pages/hints/${id}.md`), markdown, { encoding: 'utf-8' });
 };

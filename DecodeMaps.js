@@ -1,12 +1,12 @@
-import DB from './DB.js';
+import DB from './src/modules/DB.js';
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
-import Areas from '../input/Areas.json' assert {type: 'json'};
-import i18n from '../input/i18n_es.json' assert {type: 'json'};
-import SubAreas from '../input/SubAreas.json' assert {type: 'json'};
-import WorldMaps from '../input/WorldMaps.json' assert {type: 'json'};
-import MapPositions from '../input/MapPositions.json' assert {type: 'json'};
+import Areas from './src/input/Areas.json' assert {type: 'json'};
+import i18n from './src/input/i18n_es.json' assert {type: 'json'};
+import SubAreas from './src/input/SubAreas.json' assert {type: 'json'};
+import WorldMaps from './src/input/WorldMaps.json' assert {type: 'json'};
+import MapPositions from './src/input/MapPositions.json' assert {type: 'json'};
 
 const PATHS = {};
 for (const map of MapPositions) {

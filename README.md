@@ -1,4 +1,4 @@
-# Dofus context generator for Corinna
+# Dofus data decoder & context generator for Corinna
 Takes Dofus game files and makes them readable:
 - Exported markdown files are used for AI context injection.
 - Data uploaded to the database (or exported as JSON files) are treated as menu components.
@@ -6,49 +6,41 @@ Takes Dofus game files and makes them readable:
 
 **[Corinna](https://github.com/Sebasxs/Corinna)** is a [hispanic community](https://t.co/pin0Y7mWYp) management system, so these scripts also export data in spanish, but can be adapted to any language by changing the `i18n_(lang).json` file and some phrases.
 
-## Breeds
-A brief introduction to Dofus breeds and their gameplay.
-```Shell
-$ node ExportBreeds
-# Output: src/pages/breeds/*.md
-# Database root updated 'dofus_breeds'
-```
-
 ## Spells
-Update all character/monster spells including effects, criterions and details.
+Decode all character/monster spells including effects, criterions and details.
 ```Shell
-$ node UpdateSpells
+$ node DecodeSpells
 # Database root updated 'dofus_spells'
 ```
 
 ## Jobs
-Update the information of all jobs.
+Decode the information of all jobs.
 ```Shell
-$ node UpdateJobs
+$ node DecodeJobs
 # Output: src/pages/jobs/*.md
 # Database root updated 'dofus_jobs'
 ```
 
 ## Recipes
-Update all item recipes.
+Decode all item recipes.
 ```Shell
-$ node UpdateRecipes
+$ node DecodeRecipes
 # Database root updated 'dofus_recipes'
 ```
 
 ## Maps
-Update the information of every map in the game.
+Decode the information of every map in the game.
 ```Shell
-$ node UpdateMaps
+$ node DecodeMaps
 # Database root updated 'dofus_maps'
 ```
 
 ## Subareas
-- Update all subareas info.
+- Decode and update all subareas data.
 - Update NPCs positions based on subareas data.
 - Export markdown files with named-maps info and image urls.
 ```Shell
-$ node ExportSubareas
+$ node DecodeSubAreas
 # Database root updated 'dofus_subareas'
 # Database root updated 'dofus_npcs'
 # Output: src/pages/subareas/*.md
@@ -61,17 +53,25 @@ $ node ExportSubareas
 
 **Note:** fill the *NPCS_TO_UPDATE* array with the IDs you want to export, or leave it empty to update everything.
 ```Shell
-$ node UpdateNpcs
+$ node DecodeNpcs
 # Database root updated 'dofus_npcs'
 $ node ExportNpcs
 # Output: src/pages/npcs/*.md
 ```
 
 ## Quests
-Extract and update quest information.
+Decode and update quest information.
 ```Shell
-$ node UpdateQuests
+$ node DecodeQuests
 # Database root updated 'dofus_quests'
+```
+
+## Breeds
+A brief introduction to Dofus breeds and their gameplay.
+```Shell
+$ node DecodeBreeds
+# Output: src/pages/breeds/*.md
+# Database root updated 'dofus_breeds'
 ```
 
 ## Hints
@@ -91,7 +91,7 @@ $ node ExportDocuments
 ## Feature descriptions
 Information about the main features of Dofus.
 ```Shell
-$ node ExportFeatureDescriptions
+$ node ExportFeatures
 # Output: src/pages/guides/*.md
 # Output: src/data/guidebookImageNames.json
 ```
@@ -99,14 +99,14 @@ $ node ExportFeatureDescriptions
 ## Map captions
 Add captions and watermark to map images.
 ```Shell
-$ node AddCoordsViaCanvas
+$ node AddMapCaptions
 # Input: src/output/maps/map-images/*.jpg
 # Output: src/output/maps/map-coords/*.jpg
 ```
 
 ## [Dungeons](https://github.com/Sebasxs/format-dofus-data/blob/main/UpdateDungeons.js)
-Update key information about every dungeon.
+Decode and update key information about every dungeon.
 ```Shell
-$ node UpdateDungeons
+$ node DecodeDungeons
 # Database root updated 'dofus_dungeons'
 ```

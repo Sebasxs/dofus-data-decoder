@@ -1,14 +1,10 @@
-import DB from './DB.js';
-import { writeFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { join, dirname } from 'path';
+import DB from './src/modules/DB.js';
 import { encode } from 'gpt-3-encoder';
 import { Configuration, OpenAIApi } from 'openai';
-import Npcs from '../input/Npcs.json' assert {type: 'json'};
-import i18n from '../input/i18n_es.json' assert {type: 'json'};
-import Saints from '../data/saintsInformation.json' assert {type: 'json'};
-import QuestPositions from '../data/npcLocationInQuests.json' assert {type: 'json'};
-import LongerDialogSummaries from '../data/longerNpcDialogsSummarized.json' assert {type: 'json'};
+import Npcs from './src/input/Npcs.json' assert {type: 'json'};
+import i18n from './src/input/i18n_es.json' assert {type: 'json'};
+import Saints from './src/data/saintsInformation.json' assert {type: 'json'};
+import LongerDialogSummaries from './src/data/longerNpcDialogsSummarized.json' assert {type: 'json'};
 import { config } from 'dotenv';
 config();
 
@@ -224,16 +220,12 @@ for (const [name, { id, gender, imageId, breed, colors, dialogs: allDialogs }] o
    const saintDialog = Saints[id];
    if (saintDialog) dialogs.push(saintDialog.info);
    if (!dialogs.length) {
-      DB(`dofus_npcs/${id}`).update({ name, gender, breed, colors, image_id: imageId });
+      PATHS[`dofus_npcs/${id}`] = { name, gender, breed, colors, image_id: imageId };
       continue;
    };
 
    const description = await GetDescription({ name, dialogs });
-   const data = { name, gender, dialogs, description, breed, colors, image_id: imageId };
-   DB(`dofus_npcs/${id}`).update(data);
-   PATHS[id] = data;
+   PATHS[`dofus_npcs/${id}`] = { name, gender, dialogs, description, breed, colors, image_id: imageId };
 };
 
-const filename = fileURLToPath(import.meta.url);
-// writeFileSync(join(dirname(filename), '../output/npcs/npcs.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
-// DB('dofus_npcs').update(QuestPositions);
+DB().update(PATHS).then(() => { console.log('Npcs updated!') });

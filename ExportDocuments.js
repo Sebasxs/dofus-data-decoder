@@ -1,10 +1,10 @@
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
-import i18n from '../input/i18n_es.json' assert {type: 'json'};
-import Quests from '../input/Quests.json' assert {type: 'json'};
-import Documents from '../input/Documents.json' assert {type: 'json'};
-import ImageUrls from '../data/documentImages.json' assert {type: 'json'};
+import i18n from './src/input/i18n_es.json' assert {type: 'json'};
+import Quests from './src/input/Quests.json' assert {type: 'json'};
+import Documents from './src/input/Documents.json' assert {type: 'json'};
+import ImageUrls from './src/data/documentImages.json' assert {type: 'json'};
 
 const removeHtmlTags = /(<([^>]+)>)/gi;
 const _filename = fileURLToPath(import.meta.url);

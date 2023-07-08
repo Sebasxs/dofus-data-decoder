@@ -1,9 +1,9 @@
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
-import i18n from '../input/i18n_es.json' assert {type: 'json'};
-import ImageUrls from '../data/guidebookImages.json' assert {type: 'json'};
-import Descriptions from '../input/FeatureDescriptions.json' assert {type: 'json'};
+import i18n from './src/input/i18n_es.json' assert {type: 'json'};
+import ImageUrls from './src/data/guidebookImages.json' assert {type: 'json'};
+import Descriptions from './src/input/FeatureDescriptions.json' assert {type: 'json'};
 
 /**@param {String} _text*/
 function TextCleaner(_text) {

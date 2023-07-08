@@ -1,9 +1,9 @@
 <h1 align="center">Dofus data decoder</h1>
 
-📝 The exported .MD files are useful for context injection into [Corinna's](https://github.com/Sebasxs/Corinna) AI-based responses.
-👍 The information is splitted into sections and rarely exceeds 300 tokens each.
-🔗 Data uploaded to the database (or exported as JSON files) are treated as menu components on [Discord](https://t.co/pin0Y7mWYp).
-> ⚠ Input data must be located in the **`/input`** folder in JSON format.
+## About data
+- 📝 The exported .MD files are useful for context injection into [Corinna's](https://github.com/Sebasxs/Corinna) AI-based responses; the information is splitted into sections and rarely exceeds 300 tokens each.
+- 🔗 Data uploaded to the database (or exported as JSON files) are treated as menu components on [Discord](https://t.co/pin0Y7mWYp).
+- ⚠ Input data must be located in the **`/input`** folder in JSON format.
 
 > The language can be changed by changing the `i18n_(lang).json` file and some phrases around the scripts.
 Corinna is a hispanic community management system, therefore the exported data is by default in `spanish`.

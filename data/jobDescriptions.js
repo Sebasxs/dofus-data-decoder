@@ -1,0 +1,21 @@
+export default {
+   2: "El leñador tala árboles. También puede fabricar tablas y concentrados que se utilizan para fabricar otros objetos.",
+   11: "El herrero fabrica espadas, palas, martillos, hachas, dagas y lanzas.",
+   13: "El escultor fabrica varitas, arcos y bastones.",
+   15: "El zapatero fabrica botas y cinturones.",
+   16: "El joyero fabrica anillos y amuletos.",
+   24: "El minero recolecta minerales. También puede fabricar aleaciones y pulir piedras.",
+   26: "El alquimista recolecta plantas que pueden utilizarse para fabricar pócimas con las que recuperar puntos de vida o de energía, o teletransportarse.",
+   27: "El sastre confecciona capas, sombreros y mochilas.",
+   28: "El campesino cosecha los cereales y puede hacer pan, que permite recuperar puntos de vida o de energía.",
+   36: "El pescador consigue peces que luego pueden consumirse como pescado para recuperar puntos de vida o de energía.",
+   41: "El cazador recupera la carne de las criaturas a las que se enfrenta. Una vez preparadas, estas carnes permiten recuperar puntos de vida o de energía.",
+   44: "El forjamago puede modificar los efectos de las espadas, de las hachas, de los martillos, de las palas, de las dagas y de las lanzas utilizando runas de forjamagia.",
+   48: "El escultomago puede modificar los efectos de las varitas, de los arcos y de los bastones utilizando runas de forjamagia.",
+   60: "El fabricante crea trofeos, ídolos y escudos.",
+   62: "El zapateromago puede modificar los efectos de los cinturones y de las botas utilizando runas de forjamagia.",
+   63: "El joyeromago puede modificar los efectos de los anillos y de los amuletos utilizando runas de forjamagia.",
+   64: "El sastremago puede modificar los efectos de las capas, de los sombreros y de las mochilas utilizando runas de forjamagia.",
+   65: "El manitas puede fabricar el material necesario para la cría de monturas y las llaves de mazmorra.",
+   74: "El fabricamago puede modificar los efectos de los escudos utilizando runas de forjamagia."
+}

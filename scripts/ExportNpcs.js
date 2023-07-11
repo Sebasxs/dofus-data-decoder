@@ -1,4 +1,4 @@
-import DB from '../src/modules/DB.js';
+import DB from '../modules/DB.js';
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
@@ -72,16 +72,16 @@ function GetPositions({ questPositions, mapId }) {
       uniquePositions.add(`${coords} en la zona de ${subarea}`);
    });
 
-   if (!uniquePositions.size) return { positions: 'Desconozco su ubicación exacta.', mapUrl };
+   let positions = 'Desconozco su ubicación exacta.';
+   if (!uniquePositions.size) return { positions, mapUrl };
 
-   const positions = [...uniquePositions];
-   const mainMap = positions.shift();
-   let content = `Se encuentra en ${mainMap}`;
-   if (!positions.length) return { positions: content + ' y no parece moverse de allí.', mapUrl };
-   return {
-      positions: content + `, pero también puedes encontrarle en ${formatter.format(positions)} según las misiones que tengas activas.`,
-      mapUrl
-   };
+   const positionsArray = [...uniquePositions];
+   const mainMap = positionsArray.shift();
+   positions = `Se encuentra en ${mainMap} y no parece moverse de allí.`;
+   if (!positionsArray.length) return { positions, mapUrl };
+
+   positions = `Se encuentra en ${mainMap}, pero también puedes encontrarle en ${formatter.format(positionsArray)} según las misiones que tengas activas.`;
+   return { positions, mapUrl };
 };
 
 function AddSection({ infoArr, key, doc }) {
@@ -130,5 +130,5 @@ npcs.forEach(npc => {
 
 for (const [key, info] of npcDocs) {
    const file = info.join('\n\n');
-   writeFileSync(join(dirname(filename), `/src/pages/npcs/${key}.md`), file, { encoding: 'utf-8' });
+   writeFileSync(join(dirname(filename), `/pages/npcs/${key}.md`), file, { encoding: 'utf-8' });
 };

@@ -2,8 +2,8 @@
 <p align="center">
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/sebasxs/dofus-data-decoder?label=Repo%20size">
 <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/sebasxs/dofus-data-decoder?color=8A2BE2">
-<img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/sebasxs/dofus-data-decoder/main?label=Last%20Commit">
-<img alt="Static Badge" src="https://img.shields.io/badge/Discord-7289da?logo=discord&logoColor=white&link=%3Ca%20href%3D%22https%3A%2F%2Fdiscord.gg%2FRQpAMVB%22%3EDiscord%3C%2Fa%3E">
+<!<img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/sebasxs/dofus-data-decoder/main?label=Last%20Commit">
+<a href="https://t.co/pin0Y7mWYp"><img alt="Static Badge" src="https://img.shields.io/badge/Target%20server-7289da?logo=discord&logoColor=white"></a>
 </p>
 
 ## About data
@@ -19,21 +19,21 @@
 
 ## Scripts
 
-### [Decode Spells](https://github.com/Sebasxs/dofus-data-decoder/blob/main/DecodeSpells.js)
+### [Decode Spells](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeSpells.js)
 Decode all character/monster spells including effects, criterions and details.
 ```Shell
 $ node DecodeSpells
 # Database root updated 'dofus_spells'
 ```
 
-### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/DecodeQuests.js) & [Export]() Quests
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeQuests.js) & [Export]() Quests
 Decode and update quest information.
 ```Shell
 $ node DecodeQuests
 # Database root updated 'dofus_quests'
 ```
 
-### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/DecodeNpcs.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/ExportNpcs.js) NPCs
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeNpcs.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportNpcs.js) NPCs
 - Generate NPC descriptions based on their dialogues.
 - Update NPC coords for each quest involved.
 - Export all collected NPC information.
@@ -46,7 +46,7 @@ $ node ExportNpcs
 # Output: src/pages/npcs/*.md
 ```
 
-### [Decode Jobs](https://github.com/Sebasxs/dofus-data-decoder/blob/main/DecodeJobs.js)
+### [Decode Jobs](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeJobs.js)
 Decode the information of all jobs.
 ```Shell
 $ node DecodeJobs
@@ -54,21 +54,21 @@ $ node DecodeJobs
 # Database root updated 'dofus_jobs'
 ```
 
-### [Decode Recipes](https://github.com/Sebasxs/dofus-data-decoder/blob/main/DecodeRecipes.js)
+### [Decode Recipes](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeRecipes.js)
 Decode all item recipes.
 ```Shell
 $ node DecodeRecipes
 # Database root updated 'dofus_recipes'
 ```
 
-### [Decode Maps](https://github.com/Sebasxs/dofus-data-decoder/blob/main/DecodeMaps.js)
+### [Decode Maps](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeMaps.js)
 Decode the information of every map in the game.
 ```Shell
 $ node DecodeMaps
 # Database root updated 'dofus_maps'
 ```
 
-### [Decode SubAreas](https://github.com/Sebasxs/dofus-data-decoder/blob/main/DecodeSubAreas.js)
+### [Decode SubAreas](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeSubAreas.js)
 - Decode and update all subareas data.
 - Update NPCs positions based on subareas data.
 - Export markdown files with named-maps info and image urls.
@@ -79,7 +79,7 @@ $ node DecodeSubAreas
 # Output: src/pages/subareas/*.md
 ```
 
-### [Decode Breeds](https://github.com/Sebasxs/dofus-data-decoder/blob/main/DecodeBreeds.js)
+### [Decode Breeds](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeBreeds.js)
 A brief introduction to Dofus breeds and their gameplay.
 ```Shell
 $ node DecodeBreeds
@@ -87,21 +87,21 @@ $ node DecodeBreeds
 # Database root updated 'dofus_breeds'
 ```
 
-### [Export Hints](https://github.com/Sebasxs/dofus-data-decoder/blob/main/ExportHints.js)
+### [Export Hints](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportHints.js)
 Export coords of key places in Dofus.
 ```shell
 $ node ExportHints
 # Output: src/pages/hints/*.md
 ```
 
-### [Export Documents](https://github.com/Sebasxs/dofus-data-decoder/blob/main/ExportDocuments.js)
+### [Export Documents](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportDocuments.js)
 Transcription of game books and documents with their respective images.
 ```Shell
 $ node ExportDocuments
 # Output: src/pages/documents/*.md
 ```
 
-### [Export Feature Descriptions](https://github.com/Sebasxs/dofus-data-decoder/blob/main/ExportFeatures.js)
+### [Export Feature Descriptions](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportFeatures.js)
 Information about the main features of Dofus.
 ```Shell
 $ node ExportFeatures
@@ -109,7 +109,7 @@ $ node ExportFeatures
 # Output: src/data/guidebookImageNames.json
 ```
 
-### [Map captions](https://github.com/Sebasxs/dofus-data-decoder/blob/main/AddMapCaptions.js)
+### [Map captions](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/AddMapCaptions.js)
 Add captions and watermark to map images.
 ```Shell
 $ node AddMapCaptions
@@ -117,7 +117,7 @@ $ node AddMapCaptions
 # Output: src/output/maps/map-coords/*.jpg
 ```
 
-### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/DecodeDungeons.js) & [Export]() Dungeons
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeDungeons.js) & [Export]() Dungeons
 Decode and update key information about every dungeon.
 ```Shell
 $ node DecodeDungeons

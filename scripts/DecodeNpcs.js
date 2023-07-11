@@ -1,10 +1,11 @@
-import DB from '../src/modules/DB.js';
+import DB from '../modules/DB.js';
 import { encode } from 'gpt-3-encoder';
+import SkinIds from '../data/npcSkinIds.js';
 import { Configuration, OpenAIApi } from 'openai';
-import Npcs from '../src/input/Npcs.json' assert {type: 'json'};
-import i18n from '../src/input/i18n_es.json' assert {type: 'json'};
-import Saints from '../src/data/saintsInformation.json' assert {type: 'json'};
-import LongerDialogSummaries from '../src/data/longerNpcDialogsSummarized.json' assert {type: 'json'};
+import Npcs from '../input/Npcs.json' assert {type: 'json'};
+import i18n from '../input/i18n_es.json' assert {type: 'json'};
+import Saints from '../data/saintsInformation.json' assert {type: 'json'};
+import LongerDialogSummaries from '../data/longerNpcDialogsSummarized.json' assert {type: 'json'};
 import { config } from 'dotenv';
 config();
 
@@ -12,48 +13,7 @@ const configuration = new Configuration({
    organization: 'org-r9a4GtQNE7dQVbp9zr25VXcN',
    apiKey: process.env.OPENAI_API_KEY,
 });
-
 const openai = new OpenAIApi(configuration);
-const Skins = {
-   10: 'Feca',
-   11: 'Feca',
-   20: 'Osamodas',
-   21: 'Osamodas',
-   30: 'Anutrof',
-   31: 'Anutrof',
-   40: 'Sram',
-   41: 'Sram',
-   50: 'Xelor',
-   51: 'Xelor',
-   60: 'Zurcarak',
-   61: 'Zurcarak',
-   70: 'Aniripsa',
-   71: 'Aniripsa',
-   80: 'Yopuka',
-   81: 'Yopuka',
-   90: 'Ocra',
-   91: 'Ocra',
-   100: 'Sadida',
-   101: 'Sadida',
-   110: 'Sacrógrito',
-   111: 'Sacrógrito',
-   120: 'Pandawa',
-   121: 'Pandawa',
-   1405: 'Tymador',
-   1407: 'Tymador',
-   1437: 'Zobal',
-   1438: 'Zobal',
-   1663: 'Steamer',
-   1664: 'Steamer',
-   3179: 'Selotrop',
-   3180: 'Selotrop',
-   3221: 'Forjalanza',
-   3633: 'Forjalanza',
-   3285: 'Hipermago',
-   3286: 'Hipermago',
-   3498: 'Uginak',
-   3499: 'Uginak'
-};
 
 /**@param {{model: 'gpt-3.5-turbo-0613'|'gpt-3.5-turbo-16k-0613'}} */
 async function completion({ prompt, model }) {
@@ -154,7 +114,7 @@ function GetLookData(look) {
    if (lookdId === 1) {
       imageId = null;
       const skinId = look.match(/(?<={1\|)\d+/)?.[0];
-      breed = Skins[skinId] ?? null;
+      breed = SkinIds[skinId] ?? null;
    };
 
    return { imageId, breed, colors };

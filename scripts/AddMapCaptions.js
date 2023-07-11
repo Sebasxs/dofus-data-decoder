@@ -2,10 +2,10 @@ import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
 import { createCanvas, loadImage } from 'canvas';
-import Areas from '../src/input/Areas.json' assert {type: 'json'};
-import i18n from '../src/input/i18n_es.json' assert {type: 'json'};
-import SubAreas from '../src/input/SubAreas.json' assert {type: 'json'};
-import MapPositions from '../src/input/MapPositions.json' assert {type: 'json'};
+import Areas from '../input/Areas.json' assert {type: 'json'};
+import i18n from '../input/i18n_es.json' assert {type: 'json'};
+import SubAreas from '../input/SubAreas.json' assert {type: 'json'};
+import MapPositions from '../input/MapPositions.json' assert {type: 'json'};
 
 const filename = fileURLToPath(import.meta.url);
 const mapsFolder = [dirname(filename), '../output/maps'];

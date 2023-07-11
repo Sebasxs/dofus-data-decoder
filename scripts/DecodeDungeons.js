@@ -1,14 +1,14 @@
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import DB from '../src/modules/DB.js';
-import i18n from '../src/input/i18n_es.json' assert {type: 'json'};
-import Areas from '../src/input/Areas.json' assert {type: 'json'};
-import Monsters from '../src/input/Monsters.json' assert {type: 'json'};
-import SubAreas from '../src/input/SubAreas.json' assert {type: 'json'};
-import Dungeons from '../src/input/Dungeons.json' assert {type: 'json'};
-import Achievements from '../src/input/Achievements.json' assert {type: 'json'};
-import MapPositions from '../src/input/MapPositions.json' assert {type: 'json'};
+import DB from '../modules/DB.js';
+import i18n from '../input/i18n_es.json' assert {type: 'json'};
+import Areas from '../input/Areas.json' assert {type: 'json'};
+import Monsters from '../input/Monsters.json' assert {type: 'json'};
+import SubAreas from '../input/SubAreas.json' assert {type: 'json'};
+import Dungeons from '../input/Dungeons.json' assert {type: 'json'};
+import Achievements from '../input/Achievements.json' assert {type: 'json'};
+import MapPositions from '../input/MapPositions.json' assert {type: 'json'};
 
 const filename = fileURLToPath(import.meta.url);
 const data = {};
@@ -60,5 +60,5 @@ Dungeons.forEach(dungeon => {
    data[`dofus_dungeons/${id}/subarea_id`] = subarea_id;
 });
 
-// writeFileSync(join(dirname(filename), 'src/output/dungeons/data.json'), JSON.stringify(data));
+// writeFileSync(join(dirname(filename), 'output/dungeons/data.json'), JSON.stringify(data));
 DB().update(data).then(() => { console.log('Dungeons updated!') });

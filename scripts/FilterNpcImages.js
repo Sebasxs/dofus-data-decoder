@@ -7,7 +7,7 @@ const front = '_0';
 const threeQ = '_1';
 const negative3Q = '_3';
 const statesPriorityOrder = ['AnimAttaque4', 'AnimAttaque3', 'AnimAttaque2', 'AnimAttaque1', 'AnimAttaque0', 'AnimMarche', "AnimState1"];
-const imagesPath = join(_dirname, `src/images`);
+const imagesPath = join(_dirname, `../images`);
 const npcBonesDir = readdirSync(imagesPath + '/output', { encoding: 'utf-8' });
 for (const folder of npcBonesDir) {
    const [imageId] = folder.split('.');

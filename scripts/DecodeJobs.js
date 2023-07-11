@@ -1,38 +1,17 @@
-import DB from '../src/modules/DB.js';
+import DB from '../modules/DB.js';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
 import { writeFileSync } from 'fs';
-import Items from '../src/input/Items.json' assert {type: 'json'};
-import i18n from '../src/input/i18n_es.json' assert {type: 'json'};
-import InputJobs from '../src/input/Jobs.json' assert {type: 'json'};
-import Skills from '../src/input/Skills.json' assert {type: 'json'};
-import ItemTypes from '../src/input/ItemTypes.json' assert {type: 'json'};
+import JobDescriptions from '../data/jobDescriptions.js';
+import Items from '../input/Items.json' assert {type: 'json'};
+import i18n from '../input/i18n_es.json' assert {type: 'json'};
+import InputJobs from '../input/Jobs.json' assert {type: 'json'};
+import Skills from '../input/Skills.json' assert {type: 'json'};
+import ItemTypes from '../input/ItemTypes.json' assert {type: 'json'};
 
 const PATHS = {};
 const Jobs = InputJobs.slice(1, -2);
 const filename = fileURLToPath(import.meta.url);
-
-const descriptions = {
-   2: "El leñador tala árboles. También puede fabricar tablas y concentrados que se utilizan para fabricar otros objetos.",
-   11: "El herrero fabrica espadas, palas, martillos, hachas, dagas y lanzas.",
-   13: "El escultor fabrica varitas, arcos y bastones.",
-   15: "El zapatero fabrica botas y cinturones.",
-   16: "El joyero fabrica anillos y amuletos.",
-   24: "El minero recolecta minerales. También puede fabricar aleaciones y pulir piedras.",
-   26: "El alquimista recolecta plantas que pueden utilizarse para fabricar pócimas con las que recuperar puntos de vida o de energía, o teletransportarse.",
-   27: "El sastre confecciona capas, sombreros y mochilas.",
-   28: "El campesino cosecha los cereales y puede hacer pan, que permite recuperar puntos de vida o de energía.",
-   36: "El pescador consigue peces que luego pueden consumirse como pescado para recuperar puntos de vida o de energía.",
-   41: "El cazador recupera la carne de las criaturas a las que se enfrenta. Una vez preparadas, estas carnes permiten recuperar puntos de vida o de energía.",
-   44: "El forjamago puede modificar los efectos de las espadas, de las hachas, de los martillos, de las palas, de las dagas y de las lanzas utilizando runas de forjamagia.",
-   48: "El escultomago puede modificar los efectos de las varitas, de los arcos y de los bastones utilizando runas de forjamagia.",
-   60: "El fabricante crea trofeos, ídolos y escudos.",
-   62: "El zapateromago puede modificar los efectos de los cinturones y de las botas utilizando runas de forjamagia.",
-   63: "El joyeromago puede modificar los efectos de los anillos y de los amuletos utilizando runas de forjamagia.",
-   64: "El sastremago puede modificar los efectos de las capas, de los sombreros y de las mochilas utilizando runas de forjamagia.",
-   65: "El manitas puede fabricar el material necesario para la cría de monturas y las llaves de mazmorra.",
-   74: "El fabricamago puede modificar los efectos de los escudos utilizando runas de forjamagia."
-};
 
 function GetModifiableItemTypes(itemIds) {
    return itemIds.reduce((acc, cur) => {
@@ -69,9 +48,9 @@ for (const { id, nameId, iconId } of Jobs) {
    PATHS[`dofus_jobs/${id}/name`] = jobName;
    PATHS[`dofus_jobs/${id}/icon_id`] = iconId;
    PATHS[`dofus_jobs/${id}/skills`] = jobSkills;
-   PATHS[`dofus_jobs/${id}/description`] = descriptions[id];
+   PATHS[`dofus_jobs/${id}/description`] = JobDescriptions[id];
 
-   let doc = `## ${jobName}\n${descriptions[id]}`;
+   let doc = `## ${jobName}\n${JobDescriptions[id]}`;
    for (const { name, gathered_ressource_item, craftable_item_ids } of jobSkills) {
       if (craftable_item_ids.length) doc += `\nExisten ${craftable_item_ids.length} objetos diferentes que puedes fabricar con la habilidad "${name}" de este oficio.`;
       else if (gathered_ressource_item) {

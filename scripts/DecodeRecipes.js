@@ -1,11 +1,11 @@
-import DB from '../src/modules/DB.js';
+import DB from '../modules/DB.js';
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
-import Jobs from '../src/input/Jobs.json' assert {type: 'json'};
-import i18n from '../src/input/i18n_es.json' assert {type: 'json'};
-import Recipes from '../src/input/Recipes.json' assert {type: 'json'};
-import ItemTypes from '../src/input/ItemTypes.json' assert {type: 'json'};
+import Jobs from '../input/Jobs.json' assert {type: 'json'};
+import i18n from '../input/i18n_es.json' assert {type: 'json'};
+import Recipes from '../input/Recipes.json' assert {type: 'json'};
+import ItemTypes from '../input/ItemTypes.json' assert {type: 'json'};
 
 const PATHS = {};
 const ignoreTypes = [226];

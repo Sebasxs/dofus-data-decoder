@@ -1,16 +1,16 @@
-import DB from '../src/modules/DB.js';
+import DB from '../modules/DB.js';
 import { chromium } from 'playwright';
-import CriterionValues from '../src/modules/CriterionValues.js';
-import GetObjectiveData from '../src/modules/QuestObjectiveData.js';
-import i18n from '../src/input/i18n_es.json' assert {type: 'json'};
-import Quests from '../src/input/Quests.json' assert {type: 'json'};
-import Dungeons from '../src/input/Dungeons.json' assert {type: 'json'};
-import Emoticons from '../src/input/Emoticons.json' assert {type: 'json'};
-import QuestSteps from '../src/input/QuestSteps.json' assert {type: 'json'};
-import MapPositions from '../src/input/MapPositions.json' assert {type: 'json'};
-import Objectives from '../src/input/QuestObjectives.json' assert {type: 'json'};
-import QuestCategory from '../src/input/QuestCategory.json' assert {type: 'json'};
-import QuestStepRewards from '../src/input/QuestStepRewards.json' assert {type: 'json'};
+import CriterionValues from '../modules/CriterionValues.js';
+import GetObjectiveData from '../modules/QuestObjectiveData.js';
+import i18n from '../input/i18n_es.json' assert {type: 'json'};
+import Quests from '../input/Quests.json' assert {type: 'json'};
+import Dungeons from '../input/Dungeons.json' assert {type: 'json'};
+import Emoticons from '../input/Emoticons.json' assert {type: 'json'};
+import QuestSteps from '../input/QuestSteps.json' assert {type: 'json'};
+import MapPositions from '../input/MapPositions.json' assert {type: 'json'};
+import Objectives from '../input/QuestObjectives.json' assert {type: 'json'};
+import QuestCategory from '../input/QuestCategory.json' assert {type: 'json'};
+import QuestStepRewards from '../input/QuestStepRewards.json' assert {type: 'json'};
 
 const PATHS = {};
 const DungeonByBossId = new Map();
@@ -154,7 +154,7 @@ function GetSteps(stepIds, questId) {
    return { steps, requirements, rewards };
 };
 
-async function FetchQuestInfo(page, questId) {
+async function FetchAdditionalInfo(page, questId) {
    await page.goto(`https://dofusdb.fr/es/database/quest/${questId}`);
    await page.waitForTimeout(4000);
    let mapId = null;
@@ -186,7 +186,7 @@ for (const { id, nameId, repeatType, isPartyQuest, startCriterion, stepIds, cate
    const categoryName = i18n.texts[category.nameId];
    const questName = i18n.texts[nameId];
    const { steps, requirements, rewards } = GetSteps(stepIds, id);
-   const { xp, kamas, mapId, coords } = await FetchQuestInfo(page, id);
+   const { xp, kamas, mapId, coords } = await FetchAdditionalInfo(page, id);
 
    PATHS[`dofus_quests/${id}/name`] = questName;
    PATHS[`dofus_quests/${id}/steps`] = steps;

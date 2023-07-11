@@ -1,33 +1,11 @@
-import DB from '../src/modules/DB.js';
+import DB from '../modules/DB.js';
+import i18n from '../input/i18n_es.json' assert {type: 'json'};
+import Spells from '../input/Spells.json' assert {type: 'json'};
+import EFFECT_ZONE_PATTERNS from '../data/effectZonePatterns.js';
 import Effects from '../input/Effects.json' assert {type: 'json'};
-import i18n from '../src/input/i18n_es.json' assert {type: 'json'};
-import Spells from '../src/input/Spells.json' assert {type: 'json'};
 import Monsters from '../input/Monsters.json' assert {type: 'json'};
 import SpellStates from '../input/SpellStates.json' assert {type: 'json'};
-import SpellLevels from '../src/input/SpellLevels.json' assert {type: 'json'};
-
-const EFFECT_ZONE_PATTERNS = {
-   A: 'Infinito',
-   B: 'Búmerang',
-   C: 'Círculo',
-   F: 'Cono',
-   G: 'Cuadrado',
-   L: 'Línea',
-   O: 'Anillo',
-   P: 'Una casilla',
-   Q: 'Cruz',
-   R: 'Línea',
-   T: 'Línea perpendicular',
-   U: 'Semicírculo',
-   V: 'Cono',
-   W: 'Cuadrado sin diagonal',
-   X: 'Cruz',
-   '#': 'Cruz en diagonal',
-   '/': 'Reparto diagonal',
-   '-': 'Diagonal',
-   '+': 'Cruz en diagonal',
-   '*': 'Estrella'
-};
+import SpellLevels from '../input/SpellLevels.json' assert {type: 'json'};
 
 function GetStateCombinations(groups) {
    let combinations = [[]];
@@ -59,13 +37,10 @@ function GetStateNames(stateArray) {
 function GetCastConditions(expression) {
    if (['null', ''].includes(expression)) return null;
    let nonGroupedExpression = expression
-      .replace(/\(((HS[=!]\d+\|)+)(HS[=!]\d+)\)|[()]/g, '')
-      .replace(/^&/, '')
-      .replace(/&$/, '')
+      .replace(/\(((HS[=!]\d+\|)+)(HS[=!]\d+)\)|[()]|^&|&$/g, '')
       .split('|');
 
    const groupsToCombine = [nonGroupedExpression];
-
    const disjuntiveGroups = expression.match(/\(((HS[=!]\d+\|)+)(HS[=!]\d+)\)/g);
    if (disjuntiveGroups) {
       disjuntiveGroups.forEach(group => {

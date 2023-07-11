@@ -1,9 +1,13 @@
 node_modules
 input/*.json
-output/*/*
 data/serviceAccountKey.json
 images/*/*
-pages/*/*
 scripts/GetMapImages.js
 scripts/FetchBuiltLooks.js
 .env
+
+pages/*/*
+!pages/*
+
+output/*/*
+!output/*

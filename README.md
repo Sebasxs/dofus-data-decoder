@@ -6,7 +6,7 @@
 <a href="https://t.co/pin0Y7mWYp"><img alt="Static Badge" src="https://img.shields.io/badge/Target%20server-7289da?logo=discord&logoColor=white"></a>
 </p>
 
-## About data
+## About files
 - 📝 The exported `.md` files are useful for context injection into [Corinna's](https://github.com/Sebasxs/Corinna) AI-based responses; the information is splitted into sections and rarely exceeds 300 tokens each.
 - 🔗 Data uploaded to the database (or exported as JSON files) are treated as menu components on [Discord](https://t.co/pin0Y7mWYp).
 - ⚠ Input data must be located in the **`/input`** folder in `JSON` format.

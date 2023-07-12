@@ -43,14 +43,14 @@ $ node DecodeNpcs
 # Fill the *NPCS_TO_UPDATE* array with the IDs you want to decode, or leave it empty to decode everything.
 # Database root updated 'dofus_npcs'
 $ node ExportNpcs
-# Output: src/pages/npcs/*.md
+# Output: pages/npcs/*.md
 ```
 
 ### [Decode Jobs](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeJobs.js)
 Decode the information of all jobs.
 ```Shell
 $ node DecodeJobs
-# Output: src/pages/jobs/*.md
+# Output: pages/jobs/*.md
 # Database root updated 'dofus_jobs'
 ```
 
@@ -76,14 +76,14 @@ $ node DecodeMaps
 $ node DecodeSubAreas
 # Database root updated 'dofus_subareas'
 # Database root updated 'dofus_npcs'
-# Output: src/pages/subareas/*.md
+# Output: pages/subareas/*.md
 ```
 
 ### [Decode Breeds](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeBreeds.js)
 A brief introduction to Dofus breeds and their gameplay.
 ```Shell
 $ node DecodeBreeds
-# Output: src/pages/breeds/*.md
+# Output: pages/breeds/*.md
 # Database root updated 'dofus_breeds'
 ```
 
@@ -91,30 +91,30 @@ $ node DecodeBreeds
 Export coords of key places in Dofus.
 ```shell
 $ node ExportHints
-# Output: src/pages/hints/*.md
+# Output: pages/hints/*.md
 ```
 
 ### [Export Documents](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportDocuments.js)
 Transcription of game books and documents with their respective images.
 ```Shell
 $ node ExportDocuments
-# Output: src/pages/documents/*.md
+# Output: pages/documents/*.md
 ```
 
 ### [Export Feature Descriptions](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportFeatures.js)
 Information about the main features of Dofus.
 ```Shell
 $ node ExportFeatures
-# Output: src/pages/guides/*.md
-# Output: src/data/guidebookImageNames.json
+# Output: pages/guides/*.md
+# Output: data/guidebookImageNames.json
 ```
 
 ### [Map captions](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/AddMapCaptions.js)
 Add captions and watermark to map images.
 ```Shell
 $ node AddMapCaptions
-# Input: src/output/maps/map-images/*.jpg
-# Output: src/output/maps/map-coords/*.jpg
+# Input: output/maps/map-images/*.jpg
+# Output: output/maps/map-coords/*.jpg
 ```
 
 ### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeDungeons.js) & [Export]() Dungeons

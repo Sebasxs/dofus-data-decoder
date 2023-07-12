@@ -6,8 +6,8 @@ scripts/GetMapImages.js
 scripts/FetchBuiltLooks.js
 .env
 
-pages/*/*
 !pages/*
+pages/*/*
 
-output/*/*
 !output/*
+output/*/*

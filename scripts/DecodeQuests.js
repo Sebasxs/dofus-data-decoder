@@ -191,6 +191,7 @@ for (const { id, nameId, repeatType, isPartyQuest, startCriterion, stepIds, cate
    PATHS[`dofus_quests/${id}/name`] = questName;
    PATHS[`dofus_quests/${id}/steps`] = steps;
    PATHS[`dofus_quests/${id}/category`] = categoryName;
+   PATHS[`dofus_quests/${id}/category_id`] = categoryId;
    PATHS[`dofus_quests/${id}/criterion`] = CriterionValues({ startCriterion, DungeonByBossId });
    PATHS[`dofus_quests/${id}/map_id`] = mapId;
    PATHS[`dofus_quests/${id}/coords`] = coords;

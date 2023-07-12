@@ -31,6 +31,8 @@ Decode and update quest information.
 ```Shell
 $ node DecodeQuests
 # Database root updated 'dofus_quests'
+$ node ExportQuests
+# Output: pages/quests/*.md
 ```
 
 ### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeNpcs.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportNpcs.js) NPCs

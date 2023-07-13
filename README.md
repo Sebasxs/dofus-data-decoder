@@ -26,7 +26,7 @@ $ node DecodeSpells
 # Database root updated 'dofus_spells'
 ```
 
-### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeQuests.js) & [Export]() Quests
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeQuests.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportQuests.js) Quests
 Decode and update quest information.
 ```Shell
 $ node DecodeQuests

@@ -81,6 +81,13 @@ $ node DecodeSubAreas
 # Output: pages/subareas/*.md
 ```
 
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeDungeons.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportDungeons.js) Dungeons
+Decode and update key information about every dungeon.
+```Shell
+$ node DecodeDungeons
+# Database root updated 'dofus_dungeons'
+```
+
 ### [Decode Breeds](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeBreeds.js)
 A brief introduction to Dofus breeds and their gameplay.
 ```Shell
@@ -117,11 +124,4 @@ Add captions and watermark to map images.
 $ node AddMapCaptions
 # Input: output/maps/map-images/*.jpg
 # Output: output/maps/map-coords/*.jpg
-```
-
-### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeDungeons.js) & [Export]() Dungeons
-Decode and update key information about every dungeon.
-```Shell
-$ node DecodeDungeons
-# Database root updated 'dofus_dungeons'
 ```

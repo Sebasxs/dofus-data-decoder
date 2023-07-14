@@ -215,9 +215,8 @@ function FormatCriterionRecursively(criterion) {
    if (criterion.includes('(')) {
       const [first, ...rest] = criterion.split('(');
       const restIndentation = '\t' + rest.join('(').replace(/\n/g, '\n\t');
-      criterion = first + restIndentation;
-      return FormatCriterionRecursively(criterion);
-   }
+      return FormatCriterionRecursively(first + restIndentation);
+   };
    const [first, ...rest] = criterion.split(')');
    const restIndentation = rest.join(')').replace(/\n\t/g, '\n');
    return first + FormatCriterionRecursively(restIndentation);

@@ -37,10 +37,13 @@ function GetStateNames(stateArray) {
 function GetCastConditions(expression) {
    if (['null', ''].includes(expression)) return null;
    let nonGroupedExpression = expression
-      .replace(/\(((HS[=!]\d+\|)+)(HS[=!]\d+)\)|[()]|^&|&$/g, '')
+      .replace(/\(((HS[=!]\d+\|)+)(HS[=!]\d+)\)/g, '')
+      .replace(/[()]/g, '')
+      .replace(/^&|&$/g, '')
       .split('|');
 
-   const groupsToCombine = [nonGroupedExpression];
+   const groupsToCombine = [];
+   if (nonGroupedExpression) groupsToCombine.push(nonGroupedExpression);
    const disjuntiveGroups = expression.match(/\(((HS[=!]\d+\|)+)(HS[=!]\d+)\)/g);
    if (disjuntiveGroups) {
       disjuntiveGroups.forEach(group => {

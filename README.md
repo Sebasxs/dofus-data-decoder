@@ -48,6 +48,15 @@ $ node ExportNpcs
 # Output: pages/npcs/*.md
 ```
 
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeDungeons.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportDungeons.js) Dungeons
+Decode and update key information about every dungeon.
+```Shell
+$ node DecodeDungeons
+# Database root updated 'dofus_dungeons'
+$ node ExportDungeons
+# Output: pages/dungeons/*.md
+```
+
 ### [Decode Jobs](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeJobs.js)
 Decode the information of all jobs.
 ```Shell
@@ -79,13 +88,6 @@ $ node DecodeSubAreas
 # Database root updated 'dofus_subareas'
 # Database root updated 'dofus_npcs'
 # Output: pages/subareas/*.md
-```
-
-### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeDungeons.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportDungeons.js) Dungeons
-Decode and update key information about every dungeon.
-```Shell
-$ node DecodeDungeons
-# Database root updated 'dofus_dungeons'
 ```
 
 ### [Decode Breeds](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeBreeds.js)

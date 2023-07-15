@@ -57,19 +57,13 @@ $ node ExportDungeons
 # Output: pages/dungeons/*.md
 ```
 
-### [Decode Jobs](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeJobs.js)
-Decode the information of all jobs.
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeChallenges.js) & [Export]() Challenges
+Information and criterions for ingame challenges.
 ```Shell
-$ node DecodeJobs
-# Output: pages/jobs/*.md
-# Database root updated 'dofus_jobs'
-```
-
-### [Decode Recipes](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeRecipes.js)
-Decode all item recipes.
-```Shell
-$ node DecodeRecipes
-# Database root updated 'dofus_recipes'
+$ node DecodeChallenges
+# Database root updated 'dofus_challenges'
+$ node ExportChallenges
+# Output: pages/challenges/*.md
 ```
 
 ### [Decode Maps](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeMaps.js)
@@ -77,6 +71,13 @@ Decode the information of every map in the game.
 ```Shell
 $ node DecodeMaps
 # Database root updated 'dofus_maps'
+```
+
+### [Decode Recipes](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeRecipes.js)
+Decode all item recipes.
+```Shell
+$ node DecodeRecipes
+# Database root updated 'dofus_recipes'
 ```
 
 ### [Decode SubAreas](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeSubAreas.js)
@@ -88,6 +89,14 @@ $ node DecodeSubAreas
 # Database root updated 'dofus_subareas'
 # Database root updated 'dofus_npcs'
 # Output: pages/subareas/*.md
+```
+
+### [Decode Jobs](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeJobs.js)
+Decode the information of all jobs.
+```Shell
+$ node DecodeJobs
+# Output: pages/jobs/*.md
+# Database root updated 'dofus_jobs'
 ```
 
 ### [Decode Breeds](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeBreeds.js)

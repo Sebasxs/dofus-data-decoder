@@ -21,8 +21,11 @@ function FormatCriterionRecursively(criterion) {
 function GetCriterion(expression) {
    const mainOperatorsReplaced = expression
       .replace(/&?\(?g[cve][>=<!]\d+(,\w+)*\)?\|?/gi, '')
+      .replace(/(\()([a-z]+[=!<>]\d+,?\w*,?\w*)(\))/gi, '$2')
+      .replace(/(^\()(([a-z]+[=!<>]\d+,?\w*,?\w*\|?)+)(\)$)/gi, '$2')
       .replace(/&(?!\()/g, '\ny ')
       .replace(/&(?=\()/g, '\ny\n')
+      .replace(/\|(?=\()/g, '\no \n')
       .replace(/\|/g, '\no ');
 
    const expressionFormatted = FormatCriterionRecursively(mainOperatorsReplaced);
@@ -64,7 +67,14 @@ for (const challenge of Challenges) {
    const criterion = GetCriterion(activationCriterion);
    const incompatible = FilterIncompatibleChallenges(incompatibleChallenges);
 
-   PATHS[id] = { name, description, iconId, categoryId, incompatible, criterion };
+   PATHS[id] = {
+      name,
+      criterion,
+      description,
+      incompatible,
+      icon_id: iconId,
+      category_id: categoryId,
+   };
 };
 
 const filename = fileURLToPath(import.meta.url);

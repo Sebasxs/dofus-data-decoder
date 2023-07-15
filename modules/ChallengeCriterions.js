@@ -101,7 +101,7 @@ export default function (criterion) {
       const breedName = BreedIds[breedId];
       const GBText = GB.includes('>')
          ? `Debe haber al menos un ${breedName} en el equipo`
-         : `No pueden haber ${breedName} en el equipo`;
+         : `No puede haber ${breedName} en el equipo`;
       criterion = criterion.replace(GB, GBText);
    };
 

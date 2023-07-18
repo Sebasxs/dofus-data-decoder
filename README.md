@@ -66,6 +66,12 @@ $ node ExportChallenges
 # Output: pages/challenges/*.md
 ```
 
+### [Decode Achievements](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeAchievements.js)
+```Shell
+$ node DecodeAchievements
+# Database root updated 'dofus_achievements'
+```
+
 ### [Decode Maps](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeMaps.js)
 Decode the information of every map in the game.
 ```Shell

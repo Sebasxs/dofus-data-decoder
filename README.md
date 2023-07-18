@@ -57,7 +57,7 @@ $ node ExportDungeons
 # Output: pages/dungeons/*.md
 ```
 
-### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeChallenges.js) & [Export]() Challenges
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeChallenges.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportChallenges.js) Challenges
 Information and criterions for ingame challenges.
 ```Shell
 $ node DecodeChallenges

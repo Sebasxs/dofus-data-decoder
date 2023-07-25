@@ -66,7 +66,7 @@ $ node ExportChallenges
 # Output: pages/challenges/*.md
 ```
 
-### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeMonsters.js) & [Export]() Monsters
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeMonsters.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportMonsters.js) Monsters
 Decode all monsters information.
 ```Shell
 $ node DecodeMonsters

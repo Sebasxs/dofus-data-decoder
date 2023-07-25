@@ -66,6 +66,15 @@ $ node ExportChallenges
 # Output: pages/challenges/*.md
 ```
 
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeMonsters.js) & [Export]() Monsters
+Decode all monsters information.
+```Shell
+$ node DecodeMonsters
+# Database root updated 'dofus_monsters'
+$ node ExportMonsters
+# Output: pages/monsters/*.md
+```
+
 ### [Decode Achievements](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeAchievements.js)
 ```Shell
 $ node DecodeAchievements

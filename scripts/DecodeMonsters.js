@@ -93,6 +93,7 @@ for (const monster of Monsters) {
    PATHS[id] = {
       name: i18n.texts[nameId],
       race: i18n.texts[race.nameId],
+      race_id: raceId,
       image_id: (lookId === 1) ? -id : lookId,
       stats: GetStats(grades),
       resistances: GetResistances(grades),

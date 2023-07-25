@@ -6,9 +6,8 @@ images/*/*
 scripts/GetMapImages.js
 scripts/FetchBuiltLooks.js
 scripts/GenerateChallengeIcons.js
+output/*
 .env
 
 !pages/*
 pages/*/*
-
-output/*

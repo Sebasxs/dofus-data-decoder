@@ -19,6 +19,15 @@
 
 ## Scripts
 
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeChallenges.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportChallenges.js) Challenges
+Information and criterions for ingame challenges.
+```Shell
+$ node DecodeChallenges
+# Database root updated 'dofus_challenges'
+$ node ExportChallenges
+# Output: pages/challenges/*.md
+```
+
 ### [Decode Spells](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeSpells.js)
 Decode all character/monster spells including effects, criterions and details.
 ```Shell
@@ -55,15 +64,6 @@ $ node DecodeDungeons
 # Database root updated 'dofus_dungeons'
 $ node ExportDungeons
 # Output: pages/dungeons/*.md
-```
-
-### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeChallenges.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportChallenges.js) Challenges
-Information and criterions for ingame challenges.
-```Shell
-$ node DecodeChallenges
-# Database root updated 'dofus_challenges'
-$ node ExportChallenges
-# Output: pages/challenges/*.md
 ```
 
 ### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeMonsters.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportMonsters.js) Monsters

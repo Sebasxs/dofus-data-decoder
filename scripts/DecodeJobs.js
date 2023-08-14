@@ -65,8 +65,8 @@ for (const { id, nameId, iconId } of Jobs) {
       doc += `\nCon este oficio puedes recolectar ${formatter.format(ressources)}.`;
    };
 
-   writeFileSync(join(dirname(filename), `../output/jobs/${id}.md`), doc, { encoding: 'utf-8' });
+   writeFileSync(join(dirname(filename), `../pages/jobs/${id}.md`), doc, { encoding: 'utf-8' });
 };
 
-// writeFileSync(join(dirname(filename), '../output/jobs/jobs.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
+// writeFileSync(join(dirname(filename), '../output/jobs.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
 DB().update(PATHS).then(() => { console.log('Jobs updated!') });

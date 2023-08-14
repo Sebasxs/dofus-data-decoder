@@ -10,6 +10,8 @@ import Subareas from '../input/SubAreas.json' assert{type: 'json'};
 import Races from '../input/MonsterRaces.json' assert{type: 'json'};
 import Challenges from '../input/Challenges.json' assert{type: 'json'};
 
+const PATHS = {};
+
 function GetStats(grades) {
    const grade = grades.at(-1);
    return {
@@ -63,11 +65,12 @@ function GetIncompatibleChallenges(incompatibleChallenges) {
    }, {});
 };
 
-function GetDrops(drops) {
+function GetDrops(monsterId, drops) {
    return drops
       .filter(drop => Items.find(item => item.id === drop.objectId))
       .map(({ objectId, percentDropForGrade5, hasCriteria }) => {
          const item = Items.find(item => item.id === objectId);
+         PATHS[`dofus_items/${objectId}/obtaining/monsters/${monsterId}`] = percentDropForGrade5;
          return {
             item_id: objectId,
             item_name: i18n.texts[item.nameId],
@@ -77,7 +80,6 @@ function GetDrops(drops) {
       });
 };
 
-const PATHS = {};
 for (const monster of Monsters) {
    const { id, nameId, race: raceId, look, grades, isBoss, drops } = monster;
    const { subareas, spells, favoriteSubareaId, isMiniBoss, isQuestMonster } = monster;
@@ -90,7 +92,7 @@ for (const monster of Monsters) {
    const favoriteSubarea = Subareas.find(subarea => subarea.id === favoriteSubareaId);
    const correspondingMonsterId = Monsters.find(m => m.correspondingMiniBossId === id)?.id;
 
-   PATHS[id] = {
+   PATHS[`dofus_monsters/${id}`] = {
       name: i18n.texts[nameId],
       race: i18n.texts[race.nameId],
       race_id: raceId,
@@ -111,10 +113,10 @@ for (const monster of Monsters) {
       corresponding_mini_boss_id: correspondingMiniBossId || null,
       spells: GetSpells(spells),
       incompatible_challenges: GetIncompatibleChallenges(incompatibleChallenges),
-      drops: GetDrops(drops)
+      drops: GetDrops(id, drops)
    };
 };
 
 const filename = fileURLToPath(import.meta.url);
 writeFileSync(join(dirname(filename), '../output/monsters.json'), JSON.stringify(PATHS));
-DB('dofus_monsters').update(PATHS).then(() => { console.log('Monsters updated!') });
+DB().update(PATHS).then(() => { console.log('Monsters updated!') });

@@ -11,14 +11,17 @@ const PATHS = {};
 const ignoreTypes = [226];
 for (const { resultId, resultNameId, resultLevel, resultTypeId, ingredientIds, quantities, jobId } of Recipes) {
    if (ignoreTypes.includes(resultTypeId)) continue;
-   const typeNameId = ItemTypes.find(type => type.id === resultTypeId).nameId;
-   const jobNameId = Jobs.find(job => job.id === jobId).nameId;
    const ingredients = ingredientIds.reduce((acc, cur, i) => {
+      PATHS[`dofus_items/${cur}/uses/craft/${resultId}`] = quantities[i];
       acc[cur] = quantities[i];
       return acc;
    }, {});
 
-   PATHS[resultId] = {
+   PATHS[`dofus_items/${resultId}/obtaining/recipe`] = resultId;
+
+   const typeNameId = ItemTypes.find(type => type.id === resultTypeId).nameId;
+   const jobNameId = Jobs.find(job => job.id === jobId).nameId;
+   PATHS[`dofus_recipes/${resultId}`] = {
       name: i18n.texts[resultNameId],
       type: i18n.texts[typeNameId],
       level: resultLevel,
@@ -26,6 +29,7 @@ for (const { resultId, resultNameId, resultLevel, resultTypeId, ingredientIds, q
       ingredients: ingredients
    };
 };
-const _filename = fileURLToPath(import.meta.url);
-// writeFileSync(join(dirname(_filename), '../output/recipes/recipes.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
-DB('dofus_recipes').update(PATHS).then(() => { console.log('Recipes updated!') });
+
+DB().update(PATHS).then(() => { console.log('Recipes updated!') });
+// const _filename = fileURLToPath(import.meta.url);
+// writeFileSync(join(dirname(_filename), '../output/recipes.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });

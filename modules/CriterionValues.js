@@ -79,9 +79,11 @@ function ReplaceCriterionValues({ criterion, DungeonByBossId }) {
       criterion = criterion.replace(Qf, QfText);
    };
 
-   const questObjective = criterion.matchAll(/Qo[=>]\d+/gm);
+   const questObjective = criterion.matchAll(/Qo[>=<]\d+/gm);
    for (const [Qo] of questObjective) {
-      const operator = Qo.includes('=') ? 'Estar en' : 'Tener cumplido';
+      let operator = 'Estar en';
+      if (Qo.includes('>')) operator = 'Tener cumpido';
+      else operator = 'No tener cumplido';
       const objectiveId = parseInt(Qo.replace(/\D+/, ''));
       const { typeId, parameters } = QuestObjectives.find(objective => objective.id === objectiveId);
       const { text } = QuestObjectiveData({ typeId, parameters, DungeonByBossId });
@@ -207,7 +209,7 @@ function ReplaceCriterionValues({ criterion, DungeonByBossId }) {
       criterion = criterion.replace(DH, DHText);
    };
 
-   return criterion.replace(/BT=1|\n?\t*(y\s)?(Sc|Sv)=\d+,?\d+?/g, '');
+   return criterion.replace(/BT=1|\n?\t*([yo]\s)?(SC|ST|PB)[=!]\d+,?\d*(\ny\s)?/gi, '');
 };
 
 function FormatCriterionRecursively(criterion) {
@@ -223,10 +225,14 @@ function FormatCriterionRecursively(criterion) {
 };
 
 export default function ({ startCriterion, DungeonByBossId }) {
+   if (!startCriterion) return 'Ninguno';
    const _startCriterion = startCriterion
+      .replace(/(\()([a-z]+[=!<>]\d+,?\w*,?\w*)(\))/gi, '$2')
+      .replace(/(^\()(([a-z]+[=!<>]\d+,?\w*,?\w*\|?)+)(\)$)/gi, '$2')
       .replace(/&(?!\()/g, '\ny ')
       .replace(/&(?=\()/g, '\ny\n')
-      .replace(/\|/g, '\no\n');
+      .replace(/\|(?=\()/g, '\no \n')
+      .replace(/\|/g, '\no ');
 
    const criterion = FormatCriterionRecursively(_startCriterion);
    const criterionAsText = ReplaceCriterionValues({ criterion, DungeonByBossId });

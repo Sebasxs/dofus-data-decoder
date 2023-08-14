@@ -79,7 +79,7 @@ for (const challenge of Challenges) {
 
 const filename = fileURLToPath(import.meta.url);
 writeFileSync(
-   join(dirname(filename), '../output/challenges/exported.json'),
+   join(dirname(filename), '../output/challenges.json'),
    JSON.stringify(PATHS)
 );
 

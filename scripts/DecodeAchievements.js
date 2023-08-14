@@ -15,6 +15,8 @@ import Rewards from '../input/AchievementRewards.json' assert{type: 'json'};
 import Objectives from '../input/AchievementObjectives.json' assert{type: 'json'};
 import Categories from '../input/AchievementCategories.json' assert{type: 'json'};
 
+const PATHS = {};
+
 function GetDescription(descId) {
    let description = i18n.texts[descId].replace(/{itemHover,\d+::|}/g, '');
    const challengeId = description.match(/(?<=\[challenge,)\d+(?=\])/)?.at(0);
@@ -34,9 +36,10 @@ function GetDescription(descId) {
    return description;
 };
 
-function GetItems({ rewards, itemsReward, itemsQuantityReward }) {
+function GetItems({ rewards, itemsReward, itemsQuantityReward, achievementId }) {
    for (let index = 0; index < itemsReward.length; index++) {
       const item = itemsReward[index];
+      PATHS[`dofus_items/${item}/obtaining/achievements/${achievementId}`] = itemsQuantityReward[index];
       if (typeof rewards.items === 'undefined') rewards['items'] = {};
       rewards['items'][item] = itemsQuantityReward[index];
    };
@@ -127,7 +130,7 @@ async function GetRewards(rewardIds, achievementId) {
    };
    const { itemsReward, itemsQuantityReward } = reward;
    const { emotesReward, spellsReward, titlesReward, ornamentsReward } = reward;
-   GetItems({ rewards, itemsReward, itemsQuantityReward });
+   GetItems({ rewards, itemsReward, itemsQuantityReward, achievementId });
    GetEmotes({ rewards, emotesReward });
    GetSpells({ rewards, spellsReward });
    GetTitles({ rewards, titlesReward });
@@ -136,7 +139,6 @@ async function GetRewards(rewardIds, achievementId) {
    return rewards;
 };
 
-const PATHS = {};
 const browser = await chromium.launch();
 const page = await browser.newPage();
 for (const achievement of Achievements) {
@@ -155,7 +157,7 @@ for (const achievement of Achievements) {
       return acc;
    }, {});
 
-   const obj = {
+   PATHS[`dofus_achievements/${id}`] = {
       name,
       category: categoryName,
       description,
@@ -165,12 +167,9 @@ for (const achievement of Achievements) {
       objectives,
       rewards
    };
-
-   PATHS[id] = obj;
-   console.log(obj);
-   DB(`dofus_achievements/${id}`).set(obj);
 };
 
 await browser.close();
+DB().update(PATHS).then(() => { console.log('Achievements updated!') });
 // const filename = fileURLToPath(import.meta.url);
 // writeFileSync(join(dirname(filename), `../output/achievement.json`), JSON.stringify(PATHS));

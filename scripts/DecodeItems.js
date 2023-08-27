@@ -26,11 +26,6 @@ function GetResourcesBySubarea(resourcesBySubarea) {
    return output;
 };
 
-function GetCriteria(criteria) {
-
-   return {};
-};
-
 function GetEffects(effects) {
    if (!effects.length) return null;
    return effects
@@ -55,6 +50,7 @@ for (const item of Items) {
       type: i18n.texts[type.nameId],
       description: i18n.texts[descriptionId].replace(/\n+/g, '\n'),
       icon_id: item.iconId,
+      type_id: typeId,
       set_id: (itemSetId > 0) ? itemSetId : null,
       pods: item.realWeight,
       level: item.level,
@@ -76,7 +72,7 @@ for (const item of Items) {
       },
       resources_by_subarea: GetResourcesBySubarea(resourcesBySubarea),
       craft_conditional: CriterionValues({ startCriterion: craftConditional }),
-      criteria: GetCriteria(item.criteria),
+      criteria: CriterionValues({ startCriterion: item.criteria }),
       effects: GetEffects(item.possibleEffects),
    };
 };

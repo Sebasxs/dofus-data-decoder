@@ -1,4 +1,5 @@
 import QuestObjectiveData from './QuestObjectiveData.js';
+import Jobs from '../input/Jobs.json' assert{type: 'json'};
 import Items from '../input/Items.json' assert{type: 'json'};
 import i18n from '../input/i18n_es.json' assert{type: 'json'};
 import Quests from '../input/Quests.json' assert{type: 'json'};
@@ -101,6 +102,11 @@ export default function (effect) {
       const spell = Spells.find(spell => spell.id === spellLevel.spellId);
       const spellName = i18n.texts[spell.nameId];
       result = `Aprende el hechizo ${spellName}`;
+   } else if (effectId === 614) {
+      const job = Jobs.find(job => job.id === diceSide);
+      if (!job) return null;
+      const jobName = i18n.texts[job.nameId];
+      result = `+0 XP para el oficio de ${jobName}`;
    } else if (effectId === 620) {
       const titleId = Documents.find(doc => doc.id === value).titleId;
       const documentTitle = i18n.texts[titleId];
@@ -129,6 +135,11 @@ export default function (effect) {
    } else if (effectId === 814) {
       const item = Items.find(item => item.id === diceNum);
       result = i18n.texts[item.nameId];
+   } else if (effectId === 905) {
+      const monster = Monsters.find(monster => monster.id === diceSide);
+      if (!monster) return null;
+      const monsterName = i18n.texts[monster.nameId];
+      result = `Lanza un combate contra ${monsterName} (grado ${diceNum}).`;
    } else if (effectId === 983) {
       if (value === 0) result = 'No intercambiable';
       else result = `Intercambiable en ${value} días`;

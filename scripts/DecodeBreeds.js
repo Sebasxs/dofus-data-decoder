@@ -52,4 +52,4 @@ for (const { id, shortNameId, descriptionId, gameplayClassDescriptionId, breedSp
 };
 
 writeFileSync(join(dirname(filename), '../output/breeds.json'), JSON.stringify(data), { encoding: 'utf-8' });
-DB('dofus_breeds').update(data);
+DB('dofus_breeds').update(data).finally(() => { console.log('Breeds updated!') });

@@ -37,3 +37,5 @@ Challenges.forEach(challenge => {
 
    writeFileSync(join(dirname(filename), `../pages/challenges/${id}.md`), doc);
 });
+
+console.log('Challenges exported!');

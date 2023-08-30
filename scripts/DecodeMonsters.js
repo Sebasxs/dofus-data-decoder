@@ -92,31 +92,29 @@ for (const monster of Monsters) {
    const favoriteSubarea = Subareas.find(subarea => subarea.id === favoriteSubareaId);
    const correspondingMonsterId = Monsters.find(m => m.correspondingMiniBossId === id)?.id;
 
-   PATHS[`dofus_monsters/${id}`] = {
-      name: i18n.texts[nameId],
-      race: i18n.texts[race.nameId],
-      race_id: raceId,
-      image_id: (lookId === 1) ? -id : lookId,
-      stats: GetStats(grades),
-      resistances: GetResistances(grades),
-      is_boss: isBoss,
-      subareas: GetSubareas(subareas),
-      favorite_subarea: favoriteSubarea ? i18n.texts[favoriteSubarea.nameId] : null,
-      is_quest_monster: isQuestMonster,
-      can_tackle: canTackle,
-      can_be_pushed: canBePushed,
-      can_switch_pos: canSwitchPos,
-      can_be_carried: canBeCarried,
-      can_use_portal: canUsePortal,
-      is_mini_boss: isMiniBoss,
-      corresponding_monster_id: correspondingMonsterId || null,
-      corresponding_mini_boss_id: correspondingMiniBossId || null,
-      spells: GetSpells(spells),
-      incompatible_challenges: GetIncompatibleChallenges(incompatibleChallenges),
-      drops: GetDrops(id, drops)
-   };
+   PATHS[`dofus_monsters/${id}/name`] = i18n.texts[nameId];
+   PATHS[`dofus_monsters/${id}/race`] = i18n.texts[race.nameId];
+   PATHS[`dofus_monsters/${id}/race_id`] = raceId;
+   PATHS[`dofus_monsters/${id}/image_id`] = (lookId === 1) ? -id : lookId;
+   PATHS[`dofus_monsters/${id}/stats`] = GetStats(grades);
+   PATHS[`dofus_monsters/${id}/resistances`] = GetResistances(grades);
+   PATHS[`dofus_monsters/${id}/is_boss`] = isBoss;
+   PATHS[`dofus_monsters/${id}/subareas`] = GetSubareas(subareas);
+   PATHS[`dofus_monsters/${id}/favorite_subarea`] = favoriteSubarea ? i18n.texts[favoriteSubarea.nameId] : null;
+   PATHS[`dofus_monsters/${id}/is_quest_monster`] = isQuestMonster;
+   PATHS[`dofus_monsters/${id}/can_tackle`] = canTackle;
+   PATHS[`dofus_monsters/${id}/can_be_pushed`] = canBePushed;
+   PATHS[`dofus_monsters/${id}/can_switch_pos`] = canSwitchPos;
+   PATHS[`dofus_monsters/${id}/can_be_carried`] = canBeCarried;
+   PATHS[`dofus_monsters/${id}/can_use_portal`] = canUsePortal;
+   PATHS[`dofus_monsters/${id}/is_mini_boss`] = isMiniBoss;
+   PATHS[`dofus_monsters/${id}/corresponding_monster_id`] = correspondingMonsterId || null;
+   PATHS[`dofus_monsters/${id}/corresponding_mini_boss_id`] = correspondingMiniBossId || null;
+   PATHS[`dofus_monsters/${id}/spells`] = GetSpells(spells);
+   PATHS[`dofus_monsters/${id}/incompatible_challenges`] = GetIncompatibleChallenges(incompatibleChallenges);
+   PATHS[`dofus_monsters/${id}/drops`] = GetDrops(id, drops);
 };
 
 const filename = fileURLToPath(import.meta.url);
-writeFileSync(join(dirname(filename), '../output/monsters.json'), JSON.stringify(PATHS));
+// writeFileSync(join(dirname(filename), '../output/monsters.json'), JSON.stringify(PATHS));
 DB().update(PATHS).then(() => { console.log('Monsters updated!') });

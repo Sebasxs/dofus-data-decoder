@@ -146,6 +146,6 @@ Dungeons.forEach(dungeon => {
    data[`dofus_dungeons/${id}/subarea_id`] = subarea_id;
 });
 
-// const filename = fileURLToPath(import.meta.url);
-// writeFileSync(join(dirname(filename), 'output/dungeons/data.json'), JSON.stringify(data));
-DB().update(data).then(() => { console.log('Dungeons updated!') });
+const filename = fileURLToPath(import.meta.url);
+writeFileSync(join(dirname(filename), '../output/dungeons.json'), JSON.stringify(data));
+DB().update(data).finally(() => { console.log('Dungeons updated!') });

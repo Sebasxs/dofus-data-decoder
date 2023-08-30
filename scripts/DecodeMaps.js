@@ -32,4 +32,4 @@ for (const map of MapPositions) {
 
 const filename = fileURLToPath(import.meta.url);
 // writeFileSync(join(dirname(filename), '../output/maps.json'), JSON.stringify(PATHS), { encoding: 'utf-8' });
-DB().update(PATHS);
+DB().update(PATHS).finally(() => { console.log('Maps updated!') });

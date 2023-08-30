@@ -83,4 +83,4 @@ writeFileSync(
    JSON.stringify(PATHS)
 );
 
-DB('dofus_challenges').update(PATHS);
+DB('dofus_challenges').update(PATHS).finally(() => { console.log('Challenges updated!') });

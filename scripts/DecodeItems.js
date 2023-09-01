@@ -20,8 +20,8 @@ function GetRecyclingSubareas(favoriteRecyclingSubareas) {
 
 function GetResourcesBySubarea(resourcesBySubarea) {
    const output = {};
-   for (const [resourceId, quantity] of resourcesBySubarea) {
-      output[resourceId] = quantity;
+   for (const [subareaId, quantity] of resourcesBySubarea) {
+      output[subareaId] = quantity;
    };
    return output;
 };

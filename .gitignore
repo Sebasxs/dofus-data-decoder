@@ -4,8 +4,6 @@ data/serviceAccountKey.json
 data/mapUrls.json
 images/*/*
 scripts/GetMapImages.js
-scripts/FetchBuiltLooks.js
-scripts/GenerateChallengeIcons.js
 embeddings
 output/*
 .env

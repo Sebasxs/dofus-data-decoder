@@ -6,15 +6,19 @@
 <a href="https://t.co/pin0Y7mWYp"><img alt="Static Badge" src="https://img.shields.io/badge/Target%20server-7289da?logo=discord&logoColor=white"></a>
 </p>
 
-## About files
+## About
+This is not a game decompiler, but a bunch of scripts that interpret game data.
+In order to decompile the game and get the input files required here, you must first use other scripts like [PyDofus](https://github.com/balciseri/PyDofus/).
+
+> A few data that I have not found directly in the common files will be fetched from encyclopedias like [DofusDB](www.dofusdb.fr) (who have done a great job analyzing the game).
+
+## Files
 - 📝 The exported `.md` files are useful for context injection into [Corinna's](https://github.com/Sebasxs/Corinna) AI-based responses; the information is splitted into sections and rarely exceeds 300 tokens each.
 - 🔗 Data uploaded to the database (or exported as JSON files) are treated as menu components on [Discord](https://t.co/pin0Y7mWYp).
 - ⚠ Input data must be located in the **`/input`** folder in `JSON` format.
 
-> The language can be changed by changing the `i18n_(lang).json` file and some phrases around the scripts.
 > Corinna is a hispanic community management system, therefore the exported data is by default in `spanish`.
-
-> This is not a game decompiler, but a bunch of scripts that interpret game data.
+> The language can be changed by changing the `i18n_(lang).json` file and some phrases around the scripts.
 ---
 
 ## Scripts
@@ -79,6 +83,15 @@ $ node ExportMonsters
 ```Shell
 $ node DecodeAchievements
 # Database root updated 'dofus_achievements'
+```
+
+### [Decode](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeItems.js) & [Export](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/ExportItems.js) Items
+Main information about each item of the game.
+```Shell
+$ node DecodeItems
+# Database root updated 'dofus_items'
+$ node ExportItems
+# Output: pages/items/*.md
 ```
 
 ### [Decode Maps](https://github.com/Sebasxs/dofus-data-decoder/blob/main/scripts/DecodeMaps.js)

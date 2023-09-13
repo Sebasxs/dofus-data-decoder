@@ -6,6 +6,7 @@ images/*/*
 scripts/GetMapImages.js
 scripts/FetchBuiltLooks.js
 scripts/GenerateChallengeIcons.js
+embeddings
 output/*
 .env
 

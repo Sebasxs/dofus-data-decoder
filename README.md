@@ -1,4 +1,4 @@
-<h1 align="center">Dofus data decoder</h1>
+<h1 align="center">Dofus 2.0 data mapper</h1>
 <p align="center">
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/sebasxs/dofus-data-decoder?label=Repo%20size">
 <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/sebasxs/dofus-data-decoder?color=8A2BE2">
@@ -6,9 +6,12 @@
 <a href="https://t.co/pin0Y7mWYp"><img alt="Static Badge" src="https://img.shields.io/badge/Target%20server-7289da?logo=discord&logoColor=white"></a>
 </p>
 
+> [!NOTE] 
+> The scripts in this repository are deprecated due to the release of Dofus 3 and the ongoing development of a new version of Cori, which aims to handle information even more effectively. However, they can still serve as a useful reference for mapping data in Dofus 3.
+
 ## About
-This is not a game decompiler, but a bunch of scripts that interpret game data.
-In order to decompile the game and get the input files required here, you must first use other scripts like [PyDofus](https://github.com/balciseri/PyDofus/).
+This is not a game unpacker, but a collection of scripts designed to transform game data into easy to skim information.
+In order to unpack the game and get the input files required here, you must first use other scripts like [PyDofus](https://github.com/balciseri/PyDofus/).
 
 > A few data that I have not found directly in the common files will be fetched from encyclopedias like [DofusDB](www.dofusdb.fr) (who have done a great job analyzing the game).
 
